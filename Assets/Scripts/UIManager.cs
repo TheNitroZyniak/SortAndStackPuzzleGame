@@ -35,7 +35,7 @@ public class UIManager : MonoBehaviour {
     }
 
     public void UpdateSelectedBallsDisplay(Vector3 inputPos, Sprite ballSprite, int id) {
-        MoveSprite(inputPos, ballSprite);
+        //MoveSprite(inputPos, ballSprite);
 
         ballCells[selectedBallsCounter].SetCell(ballSprite, id);
         selectedBallsCounter = temp;
