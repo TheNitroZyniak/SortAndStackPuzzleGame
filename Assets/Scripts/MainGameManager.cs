@@ -2,12 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using Zenject;
 
 public class MainGameManager : MonoBehaviour {
+    [Inject] UIManager _uiManager;
+    [Inject] Timer _timer;
 
     private List<SelectableObject> allObjects = new List<SelectableObject>();
-    
-
 
     private bool CheckAllObjects() {
         if(allObjects.Count > 0) return true;
@@ -19,9 +20,14 @@ public class MainGameManager : MonoBehaviour {
         if (allObjects.Any(obj => obj == objectToRemove)) {
             allObjects.Remove(objectToRemove);
             if (!CheckAllObjects()) {
-                print("Victory");
+                _uiManager.OpenVictoryPopup();
+                _timer.StopTimer();
             }
         }
     }
 
+
+    public void GameLost() {
+        _uiManager.OpenLosePopup();
+    }
 }

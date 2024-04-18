@@ -117,7 +117,7 @@ Rigidbody:
   m_GameObject: {fileID: 8031430482826346991}
   serializedVersion: 4
   m_Mass: 1
-  m_Drag: 0.8
+  m_Drag: 0.5
   m_AngularDrag: 0.8
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
@@ -130,10 +130,10 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 0
+  m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 8
+  m_Constraints: 0
   m_CollisionDetection: 0
 --- !u!114 &-8325461382178879394
 MonoBehaviour:
@@ -148,8 +148,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 0
-  ballImage: {fileID: 0}
-  rotationSpeed: 0
+  ballImage: {fileID: 21300000, guid: 182954c46efef334f9accc42b024526b, type: 3}
+  _rb: {fileID: 8520018042669360582}
   ballUIImagePrefab: {fileID: 0}
   uiTarget: {fileID: 0}
 --- !u!114 &-3520370572454308549
