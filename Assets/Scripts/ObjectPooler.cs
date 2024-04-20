@@ -6,17 +6,17 @@ public class ObjectPooler : MonoBehaviour{
 
     [System.Serializable]
     public class Pool {
-        public string tag;
+        public ObjectType tag;
         public GameObject prefab;
         public int size;
     }
 
     public List<Pool> pools;
 
-    public Dictionary<string, Queue<GameObject>> poolDictionary;
+    public Dictionary<ObjectType, Queue<GameObject>> poolDictionary;
 
     void Start(){
-        poolDictionary = new Dictionary<string, Queue<GameObject>>();
+        poolDictionary = new Dictionary<ObjectType, Queue<GameObject>>();
 
         foreach(Pool pool in pools) { 
             Queue<GameObject> objectQueue = new Queue<GameObject>();
@@ -29,7 +29,7 @@ public class ObjectPooler : MonoBehaviour{
         }
     }
 
-    public GameObject SpawnFromPool(string tag, Vector3 position, Quaternion rotation) {
+    public GameObject SpawnFromPool(ObjectType tag, Vector3 position, Quaternion rotation) {
 
         if (!poolDictionary.ContainsKey(tag)) {
             Debug.LogWarning("Pool with tag " + tag + " doesn't exist");       

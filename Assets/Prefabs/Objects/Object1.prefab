@@ -147,11 +147,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dcae571598e76eb46be7ed1b9e05829e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  objectType: 2
   id: 0
   ballImage: {fileID: 21300000, guid: 182954c46efef334f9accc42b024526b, type: 3}
   _rb: {fileID: 8520018042669360582}
   ballUIImagePrefab: {fileID: 0}
   uiTarget: {fileID: 0}
+  endRotation: {x: 0, y: 0, z: 0}
 --- !u!114 &-3520370572454308549
 MonoBehaviour:
   m_ObjectHideFlags: 0

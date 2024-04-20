@@ -13,7 +13,11 @@ MonoBehaviour:
   m_Name: Level_2
   m_EditorClassIdentifier: 
   levelIndex: 1
-  secondsToComplete: 25
-  amountOfCubes: 3
-  amountOfSpheres: 3
-  amountOfCapsules: 9
+  secondsToComplete: 60
+  objects:
+  - objectType: 4
+    objectAmount: 12
+  - objectType: 5
+    objectAmount: 18
+  - objectType: 6
+    objectAmount: 12

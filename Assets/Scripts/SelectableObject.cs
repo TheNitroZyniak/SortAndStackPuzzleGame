@@ -2,12 +2,18 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 using Zenject;
+using DG.Tweening;
+using UnityEditor.Rendering;
 
 
 public class SelectableObject : MonoBehaviour {
     [Inject] MainGameManager _mainGameManager;
     [Inject] UIManager _uiManager;
-    [SerializeField] int id;
+    [Inject] BottomCells _bottomCells;
+
+    public ObjectType objectType;
+
+    public int id;
     [SerializeField] Sprite ballImage;
     [SerializeField] Rigidbody _rb;
     private bool isSelected;
@@ -16,6 +22,7 @@ public class SelectableObject : MonoBehaviour {
     public RectTransform uiTarget;
 
     SphereCollider col;
+    public Vector3 endRotation;
 
 
     private void Start() {
@@ -36,20 +43,40 @@ public class SelectableObject : MonoBehaviour {
     }
 
     public void Disappear() {
-        GetComponent<Renderer>().enabled = false;
+        //GetComponent<Renderer>().enabled = false;
         GetComponent<Collider>().enabled = false;
+        _rb.useGravity = false;
         Vector3 inputPos = Camera.main.WorldToScreenPoint(transform.position);
+        //Vector3 pos = _uiManager.GetCurrentCellPos();
 
-        _uiManager.UpdateBefore(ballImage, id);
-        _uiManager.UpdateSelectedBallsDisplay(inputPos, ballImage, id);
-        _mainGameManager.RemoveFromList(this);
+
+        //_uiManager.UpdateBefore(ballImage, id);
+        //_uiManager.UpdateSelectedBallsDisplay(inputPos, ballImage, id);
+
+        _bottomCells.UpdateBefore(this, id);
+
+        Vector3 pos = _bottomCells.GetCurrentCell();
+
+        
+
+        //Vector3 pos1 = worldToUISpace(FindObjectOfType<Canvas>(), pos);
+
+        //print(pos);
+
+        transform.DOMove(pos, 20).SetSpeedBased(true).OnComplete(() => {
+            _bottomCells.UpdateSelectedBallsDisplay(this, id);
+            _mainGameManager.RemoveFromList(this);
+            Block();
+        });
+        transform.DORotate(endRotation, 0.25f);
+
         //GameController.Instance.RemoveFromList(this);
         //StartCoroutine(MoveToUI(uiImageObj.GetComponent<RectTransform>()));
 
 
     }
-
-    public void DisableCol() {
-        col.enabled = false;
+    public void Block() {
+        _rb.isKinematic = true;
     }
+
 }

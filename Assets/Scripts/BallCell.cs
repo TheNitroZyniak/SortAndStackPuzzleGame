@@ -5,6 +5,7 @@ public class BallCell : MonoBehaviour {
     [SerializeField] Sprite empty;
     public Image CellImage { get; private set; }
     public int BallId { get; private set; }
+    public Transform point;
 
     private void Awake() {
         CellImage = GetComponent<Image>();

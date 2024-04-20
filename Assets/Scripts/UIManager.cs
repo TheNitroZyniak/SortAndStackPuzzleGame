@@ -44,14 +44,18 @@ public class UIManager : MonoBehaviour {
        
     }
 
-    private void MoveSprite(Vector3 inputPos, Sprite ballSprite) {
-        GameObject go = new GameObject();
-        go.transform.position = inputPos;
-        go.AddComponent<Image>();
-        go.GetComponent<Image>().sprite = ballSprite;
-        go.transform.parent = transform;
+    public Vector3 GetCurrentCellPos() {
+        return ballCells[selectedBallsCounter].point.position;
+    }
 
-        go.transform.DOMove(ballCells[selectedBallsCounter].transform.position, 1);
+    private void MoveSprite(Vector3 inputPos, Sprite ballSprite) {
+        //GameObject go = new GameObject();
+        //go.transform.position = inputPos;
+        //go.AddComponent<Image>();
+        //go.GetComponent<Image>().sprite = ballSprite;
+        //go.transform.parent = transform;
+
+        //go.transform.DOMove(ballCells[selectedBallsCounter].transform.position, 1);
     }
 
     private void CheckFor3(int id) {

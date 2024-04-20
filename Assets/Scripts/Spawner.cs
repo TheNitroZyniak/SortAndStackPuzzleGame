@@ -8,7 +8,7 @@ public class Spawner : MonoBehaviour{
     [Inject] MainGameManager _mainGameManager;
     [Inject] ObjectPooler _objectPooler;
     [Inject] Timer _timer;
-
+    [Inject] StackManager _stackManager;
     [SerializeField] Level[] _levelsSO;
 
 
@@ -17,20 +17,28 @@ public class Spawner : MonoBehaviour{
     int currentSpawner;
 
     private void Start() {
+        Application.targetFrameRate = 60;
+
         CreateLevel();
     }
 
 
     public void CreateLevel() {
         currentLevel = PlayerPrefs.GetInt("CurrentLevel");
- 
-        SpawnObjects("Cubes", _levelsSO[currentLevel].amountOfCubes);
-        SpawnObjects("Spheres", _levelsSO[currentLevel].amountOfSpheres);
-        SpawnObjects("Capsules", _levelsSO[currentLevel].amountOfCapsules);
+
+        _stackManager.SetStackParams(_levelsSO[currentLevel].objects.Count);
+
+        for (int i = 0; i < _levelsSO[currentLevel].objects.Count; i++) {
+            SpawnObjects(_levelsSO[currentLevel].objects[i].objectType, _levelsSO[currentLevel].objects[i].objectAmount);
+            _stackManager.CreateStacks(_levelsSO[currentLevel].objects[i].objectType);
+        }
+    }
+
+    public void StartGame() {
         _timer.StartTimer(_levelsSO[currentLevel].secondsToComplete);
     }
 
-    private void SpawnObjects(string tag, int amount) {
+    private void SpawnObjects(ObjectType tag, int amount) {
         currentSpawner++;
 
         for (int i = 0; i < amount; i++) {

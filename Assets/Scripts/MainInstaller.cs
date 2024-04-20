@@ -11,6 +11,9 @@ public class MainInstaller : MonoInstaller{
     [SerializeField] private UIManager _uiManager;
     [SerializeField] private ObjectPooler _objectPooler;
     [SerializeField] private Timer _timer;
+    [SerializeField] private BottomCells _bottomCells;
+    [SerializeField] private StackManager _stackManager;
+
 
     public override void InstallBindings() {
         Container.BindInstance(_mainCamera).WithId("mainCamera");
@@ -19,6 +22,8 @@ public class MainInstaller : MonoInstaller{
         Bind(_uiManager);
         Bind(_objectPooler);
         Bind(_timer);
+        Bind(_bottomCells);
+        Bind(_stackManager);
     }
 
     private protected void Bind<T>(T instance) {

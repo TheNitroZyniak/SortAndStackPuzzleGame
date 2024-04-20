@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
@@ -5,7 +6,22 @@ using UnityEngine;
 public class Level : ScriptableObject{
     public int levelIndex;
     public int secondsToComplete;
-    public int amountOfCubes;
-    public int amountOfSpheres;
-    public int amountOfCapsules;
+
+    public List<LevelObjectData> objects = new List<LevelObjectData>();
+}
+
+[System.Serializable]
+public class LevelObjectData {
+    public ObjectType objectType;
+    public int objectAmount;
+}
+
+public enum ObjectType {
+    None,
+    Sphere,
+    Cube,
+    Cylinder,
+    Torus,
+    Prism,
+    Arch
 }
