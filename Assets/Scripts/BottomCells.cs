@@ -5,6 +5,7 @@ using Zenject;
 
 public class BottomCells : MonoBehaviour{
     [Inject] StackManager _stackManager;
+    [Inject] MainGameManager _mainGameManager;
     [SerializeField] ObjectCell[] cells;
     
 
@@ -53,6 +54,8 @@ public class BottomCells : MonoBehaviour{
         else if (selectedObjectCounter == cells.Length) {
             //GameController.Instance.SetActiveAllBalls(false);
 
+            _mainGameManager.GameLost();
+
             //LevelFailed levelFailed = new LevelFailed();
             //int currentLvl = PlayerPrefs.GetInt("Level");
             //levelFailed.level = currentLvl;
@@ -76,6 +79,8 @@ public class BottomCells : MonoBehaviour{
             }
         }
 
+        // Тут проблема!!!
+
         int index = first;
         for (int i = 0; i < cells.Length - 3; i++) {
             if (cells[i].IsEmpty()) {
@@ -86,7 +91,10 @@ public class BottomCells : MonoBehaviour{
             }
         }
 
+        //cells[3].SetCell(cells[6].currentObject, cells[6].ObjectId, true);
+
         for (int i = index; i < cells.Length; i++) cells[i].ClearCell(false);
+
         selectedObjectCounter = index;
     }
 }

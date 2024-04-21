@@ -39,4 +39,7 @@ public class Timer : MonoBehaviour{
         text.text = "";
     }
 
+    public int GetTime() {
+        return sec;
+    }
 }

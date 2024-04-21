@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Level_3
   m_EditorClassIdentifier: 
   levelIndex: 2
-  secondsToComplete: 60
+  secondsToComplete: 90
   objects:
   - objectType: 1
     objectAmount: 12
@@ -23,3 +23,5 @@ MonoBehaviour:
     objectAmount: 18
   - objectType: 6
     objectAmount: 12
+  - objectType: 3
+    objectAmount: 18

@@ -1,14 +1,11 @@
 using UnityEngine;
-using UnityEngine.UI;
-using System.Collections;
 using Zenject;
 using DG.Tweening;
-using UnityEditor.Rendering;
+
 
 
 public class SelectableObject : MonoBehaviour {
     [Inject] MainGameManager _mainGameManager;
-    [Inject] UIManager _uiManager;
     [Inject] BottomCells _bottomCells;
 
     public ObjectType objectType;
@@ -32,7 +29,12 @@ public class SelectableObject : MonoBehaviour {
 
 
     private void OnMouseDown() {
-        if (!isSelected) Select();
+        if (!_mainGameManager.IsTouchBlocked()) {
+            if (!isSelected) {
+                Select();
+                _mainGameManager.BlockTouch();
+            }
+        }
     }
 
     public void Select() {
@@ -63,12 +65,15 @@ public class SelectableObject : MonoBehaviour {
 
         //print(pos);
 
-        transform.DOMove(pos, 20).SetSpeedBased(true).OnComplete(() => {
+        transform.DOMove(pos, 25).SetSpeedBased(true).OnComplete(() => {
             _bottomCells.UpdateSelectedBallsDisplay(this, id);
             _mainGameManager.RemoveFromList(this);
+
+            _mainGameManager.UnblockTouch();
+
             Block();
         });
-        transform.DORotate(endRotation, 0.25f);
+        transform.DORotate(endRotation, 0.2f);
 
         //GameController.Instance.RemoveFromList(this);
         //StartCoroutine(MoveToUI(uiImageObj.GetComponent<RectTransform>()));

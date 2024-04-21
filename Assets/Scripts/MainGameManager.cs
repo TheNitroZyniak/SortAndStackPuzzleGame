@@ -9,6 +9,7 @@ public class MainGameManager : MonoBehaviour {
     [Inject] Timer _timer;
 
     private List<SelectableObject> allObjects = new List<SelectableObject>();
+    private bool touchBlocked;
 
     private bool CheckAllObjects() {
         if(allObjects.Count > 0) return true;
@@ -29,5 +30,17 @@ public class MainGameManager : MonoBehaviour {
 
     public void GameLost() {
         _uiManager.OpenLosePopup();
+    }
+
+    public void BlockTouch() {
+        touchBlocked = true;
+    }
+
+    public bool IsTouchBlocked() { 
+        return touchBlocked; 
+    }
+
+    public void UnblockTouch() {
+        touchBlocked = false;
     }
 }
