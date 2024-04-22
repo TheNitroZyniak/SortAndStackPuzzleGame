@@ -11,22 +11,14 @@ public class SelectableObject : MonoBehaviour {
     public ObjectType objectType;
 
     public int id;
-    [SerializeField] Sprite ballImage;
+    
     [SerializeField] Rigidbody _rb;
     private bool isSelected;
 
-    public GameObject ballUIImagePrefab;
-    public RectTransform uiTarget;
-
-    SphereCollider col;
+    public Vector3 cellScale;
+    
     public Vector3 endRotation;
-
-
-    private void Start() {
-        col = GetComponent<SphereCollider>();
-        //_rb.velocity = new Vector3(Random.Range(-8, 8), -25, 0);
-    }
-
+    public bool rotateZ;
 
     private void OnMouseDown() {
         if (!_mainGameManager.IsTouchBlocked()) {
@@ -68,11 +60,11 @@ public class SelectableObject : MonoBehaviour {
         transform.DOMove(pos, 25).SetSpeedBased(true).OnComplete(() => {
             _bottomCells.UpdateSelectedBallsDisplay(this, id);
             _mainGameManager.RemoveFromList(this);
-
             _mainGameManager.UnblockTouch();
-
             Block();
         });
+
+        transform.DOScale(cellScale, 0.2f);
         transform.DORotate(endRotation, 0.2f);
 
         //GameController.Instance.RemoveFromList(this);

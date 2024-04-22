@@ -15,9 +15,9 @@ MonoBehaviour:
   levelIndex: 1
   secondsToComplete: 60
   objects:
-  - objectType: 4
-    objectAmount: 12
-  - objectType: 5
-    objectAmount: 18
-  - objectType: 6
-    objectAmount: 12
+  - objectType: 1
+    objectAmount: 9
+  - objectType: 2
+    objectAmount: 9
+  - objectType: 3
+    objectAmount: 9

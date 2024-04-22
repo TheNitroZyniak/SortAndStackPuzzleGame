@@ -43,9 +43,9 @@ public class Spawner : MonoBehaviour{
 
         for (int i = 0; i < amount; i++) {
             GameObject obj = _objectPooler.SpawnFromPool(tag,
-                new Vector3(Random.Range(-2, 2), Random.Range(-3, 3), 2), 
+                new Vector3(Random.Range(-3.5f, 3.5f), Random.Range(-3, 6), Random.Range(0, 3)), 
                 //new Vector3(0, 10, 0),
-                Quaternion.Euler(Random.Range(0, 90), Random.Range(0, 90), Random.Range(0, 90)));
+                Quaternion.Euler(0, Random.Range(0, 360), 0));
             _mainGameManager.AddToList(obj.GetComponent<SelectableObject>());
 
         }

@@ -16,14 +16,14 @@ MonoBehaviour:
   secondsToComplete: 120
   objects:
   - objectType: 1
-    objectAmount: 12
+    objectAmount: 6
   - objectType: 2
-    objectAmount: 18
+    objectAmount: 9
   - objectType: 3
-    objectAmount: 12
+    objectAmount: 6
   - objectType: 4
-    objectAmount: 12
+    objectAmount: 9
   - objectType: 5
-    objectAmount: 18
+    objectAmount: 6
   - objectType: 6
-    objectAmount: 18
+    objectAmount: 9

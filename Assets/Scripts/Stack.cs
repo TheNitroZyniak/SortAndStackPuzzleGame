@@ -13,16 +13,22 @@ public class Stack : MonoBehaviour{
 
     private void Start() {
         _yPos = transform.position.y;
+        _yPos += GetComponent<MeshRenderer>().bounds.size.y / 2f;
     }
 
     public void Add(SelectableObject newObject, float factor) {
         list.Add(newObject);
-        _yPos += 0.2f / factor;
+        _yPos += (newObject.GetComponent<MeshRenderer>().bounds.size.z / factor) / 2f;
 
-        Vector3 posToPlace = new Vector3(transform.position.x, _yPos, transform.position.z);
+        Vector3 posToPlace = new Vector3(transform.position.x, _yPos, transform.position.z + 0.5f);
         newObject.transform.DOMove(posToPlace, 0.5f);
         Vector3 endRotation = newObject.endRotation;
-        endRotation = new Vector3(endRotation.x + 90, endRotation.y, endRotation.z);
+
+        if(!newObject.rotateZ)
+            endRotation = new Vector3(endRotation.x + 90, endRotation.y, endRotation.z);
+        else
+            endRotation = new Vector3(endRotation.x, endRotation.y, endRotation.z + 90);
+
         newObject.transform.DORotate(endRotation, 0.5f).OnComplete(() => {
             newObject.Block();
         });
@@ -30,7 +36,9 @@ public class Stack : MonoBehaviour{
         Vector3 currentScale = newObject.transform.localScale;
         newObject.transform.DOScale(currentScale/ factor, 0.5f);
 
-        
+        _yPos += (newObject.GetComponent<MeshRenderer>().bounds.size.z / factor) / 2f;
+
+
     }
 
 }
