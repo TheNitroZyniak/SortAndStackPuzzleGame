@@ -154,6 +154,8 @@ MonoBehaviour:
   cellScale: {x: 1.4, y: 1.4, z: 1.4}
   endRotation: {x: 0, y: 0, z: 0}
   rotateZ: 0
+  currentCell: 0
+  yOffset: 0.5
 --- !u!114 &7247024805762072244
 MonoBehaviour:
   m_ObjectHideFlags: 0

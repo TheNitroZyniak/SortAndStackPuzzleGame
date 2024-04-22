@@ -1,7 +1,7 @@
 using UnityEngine;
 
 public class ObjectCell : MonoBehaviour{
-
+    [SerializeField] private int cellId;
     public int ObjectId { get; private set; }
     public SelectableObject currentObject;
 
@@ -22,7 +22,8 @@ public class ObjectCell : MonoBehaviour{
     public void SetCell(SelectableObject newObject, int id, bool doMove) {
         ObjectId = id;
         currentObject = newObject;
-        if(doMove)
+        currentObject.currentCell = cellId;
+        if (doMove)
             currentObject.transform.position = transform.position;
     }
 

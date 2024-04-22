@@ -13,11 +13,15 @@ MonoBehaviour:
   m_Name: Level_1
   m_EditorClassIdentifier: 
   levelIndex: 1
-  secondsToComplete: 60
+  secondsToComplete: 75
   objects:
   - objectType: 1
-    objectAmount: 9
+    objectAmount: 12
   - objectType: 2
-    objectAmount: 9
+    objectAmount: 12
   - objectType: 3
-    objectAmount: 9
+    objectAmount: 12
+  - objectType: 4
+    objectAmount: 12
+  - objectType: 5
+    objectAmount: 12

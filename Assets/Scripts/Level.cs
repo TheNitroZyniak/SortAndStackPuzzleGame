@@ -18,10 +18,16 @@ public class LevelObjectData {
 
 public enum ObjectType {
     None,
-    Sphere,
-    Cube,
-    Cylinder,
-    Torus,
-    Prism,
-    Arch
+    Shirt_1,
+    Shirt_2,
+    Shirt_3,
+    Shirt_4,
+    Shirt_5,
+    Shirt_6,
+    Sandwich,
+    Headphones,
+    Pizza,
+    Gym,
+    Donut,
+    Disko
 }

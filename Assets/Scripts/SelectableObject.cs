@@ -1,8 +1,7 @@
 using UnityEngine;
 using Zenject;
 using DG.Tweening;
-
-
+using UnityEngine.EventSystems;
 
 public class SelectableObject : MonoBehaviour {
     [Inject] MainGameManager _mainGameManager;
@@ -19,24 +18,36 @@ public class SelectableObject : MonoBehaviour {
     
     public Vector3 endRotation;
     public bool rotateZ;
+    public int currentCell;
+
+    Vector3 startScale;
+    public float yOffset;
+
+    private void Start() {
+        startScale = transform.localScale;
+    }
 
     private void OnMouseDown() {
         if (!_mainGameManager.IsTouchBlocked()) {
             if (!isSelected) {
-                Select();
+                Select(false);
                 _mainGameManager.BlockTouch();
             }
         }
     }
 
-    public void Select() {
+    public void Select(bool magnet) {
+        //if (EventSystem.current.currentSelectedGameObject.layer == 5) {
+        //    print(EventSystem.current.currentSelectedGameObject.name);
+        //    return;
+        //}
         isSelected = true;
         //AudioManager.Instance.PlaySound(0, 1);
         //UIManager.Instance.DeselectTutor();
-        Disappear();
+        Disappear(magnet);
     }
 
-    public void Disappear() {
+    public void Disappear(bool magnet) {
         //GetComponent<Renderer>().enabled = false;
         GetComponent<Collider>().enabled = false;
         _rb.useGravity = false;
@@ -50,19 +61,31 @@ public class SelectableObject : MonoBehaviour {
         _bottomCells.UpdateBefore(this, id);
 
         Vector3 pos = _bottomCells.GetCurrentCell();
+        pos = new Vector3(pos.x, pos.y + yOffset, pos.z);
 
-        
 
         //Vector3 pos1 = worldToUISpace(FindObjectOfType<Canvas>(), pos);
 
         //print(pos);
 
-        transform.DOMove(pos, 25).SetSpeedBased(true).OnComplete(() => {
-            _bottomCells.UpdateSelectedBallsDisplay(this, id);
-            _mainGameManager.RemoveFromList(this);
-            _mainGameManager.UnblockTouch();
-            Block();
-        });
+        if (!magnet) {
+            transform.DOMove(pos, 25).SetSpeedBased(true).OnComplete(() => {
+                _mainGameManager.RemoveFromList(this);
+                _bottomCells.UpdateSelectedBallsDisplay(this, id);
+                
+                _mainGameManager.UnblockTouch();
+                Block();
+            });
+        } 
+        else {
+            transform.DOMove(pos, 0.2f).OnComplete(() => {
+                _mainGameManager.RemoveFromList(this);
+                _bottomCells.UpdateSelectedBallsDisplay(this, id);
+                
+                _mainGameManager.UnblockTouch();
+                Block();
+            });
+        }
 
         transform.DOScale(cellScale, 0.2f);
         transform.DORotate(endRotation, 0.2f);
@@ -72,6 +95,18 @@ public class SelectableObject : MonoBehaviour {
 
 
     }
+
+
+    public void ToCentre() {
+        transform.DOMove(new Vector3(0, 0, -2), 25).SetSpeedBased(true).OnComplete(() => {
+            GetComponent<Collider>().enabled = true;
+            _rb.useGravity = true;
+            _rb.isKinematic = false;
+        }); 
+        transform.DOScale(startScale, 0.2f);
+        isSelected = false;
+    }
+
     public void Block() {
         _rb.isKinematic = true;
     }

@@ -5,9 +5,10 @@ using System.Collections;
 using UnityEngine.SceneManagement;
 using System.Collections.Generic;
 using DG.Tweening;
-
+using Zenject;
 
 public class UIManager : MonoBehaviour {
+    [Inject] MainGameManager _mainGameManager;
 
     [SerializeField] private BallCell[] ballCells;
     [SerializeField] private GameObject victoryPopup, lostPopup;
@@ -32,6 +33,15 @@ public class UIManager : MonoBehaviour {
 
     public void SetScene(int scene) {
         SceneManager.LoadScene(scene);
+    }
+
+
+    public void UseMagnet() {
+        _mainGameManager.UseMagnet();
+    }
+
+    public void UseUndo() {
+        _mainGameManager.OnUndoButtonPress();
     }
 }
 

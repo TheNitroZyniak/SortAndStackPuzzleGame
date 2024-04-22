@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
+using static UnityEngine.ParticleSystem;
 
 public class BottomCells : MonoBehaviour{
     [Inject] StackManager _stackManager;
@@ -68,12 +70,19 @@ public class BottomCells : MonoBehaviour{
     private void RemoveAndShiftCells(int id) {
         int first = -1;
         int removeCount = 0;
+
+
+        for (int i = 0; i < selectedObjectCounter; i++) {
+            if (cells[i].ObjectId == id) {
+                _mainGameManager.RemoveFromHistory(cells[i].currentObject);
+            }
+        }
+
+
         for (int i = 0; i < selectedObjectCounter; i++) {
             if (cells[i].ObjectId == id) {
                 if (first < 0) first = i;
-
-                _stackManager.AddToStack(cells[i].currentObject);
-
+                _stackManager.AddToStack(cells[i].currentObject);              
                 cells[i].ClearCell(true);
                 removeCount++;
             }
@@ -96,5 +105,25 @@ public class BottomCells : MonoBehaviour{
         for (int i = index; i < cells.Length; i++) cells[i].ClearCell(false);
 
         selectedObjectCounter = index;
+    }
+
+
+    public void ChangeCells(int pos) {
+        int index = pos;
+        cells[pos].ClearCell(false);
+
+        for (int i = pos; i < cells.Length - 1; i++) {
+            if (cells[i + 1].currentObject != null) {
+
+                    cells[i].SetCell(cells[i + 1].currentObject, cells[i + 1].ObjectId, true);
+                    index = i + 1;
+                
+            }
+        }
+
+        for (int i = index; i < cells.Length; i++) cells[i].ClearCell(false);
+
+
+        selectedObjectCounter--;
     }
 }

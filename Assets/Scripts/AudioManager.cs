@@ -6,12 +6,20 @@ using Zenject;
 
 public class AudioManager : MonoBehaviour{
 
+    public static AudioManager Instance { get; private set; }
+
     [SerializeField] private AudioSource musicSource;
     [SerializeField] private AudioSource[] soundSources;
 
     [SerializeField] private AudioClip[] soundClips;
 
 
+    private void Awake() {
+        //if(Instance == null) {
+            Instance = this;
+        //}
+        
+    }
 
     public void PlaySound(int id) {
         if (id >= 0 && id < soundSources.Length) {

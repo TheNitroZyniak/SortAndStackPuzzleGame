@@ -148,12 +148,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dcae571598e76eb46be7ed1b9e05829e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectType: 1
-  id: 8
+  objectType: 10
+  id: 10
   _rb: {fileID: -829686762458469064}
   cellScale: {x: 2, y: 2, z: 2}
   endRotation: {x: 0, y: 90, z: 0}
   rotateZ: 1
+  currentCell: 0
 --- !u!114 &2254205915716517294
 MonoBehaviour:
   m_ObjectHideFlags: 0

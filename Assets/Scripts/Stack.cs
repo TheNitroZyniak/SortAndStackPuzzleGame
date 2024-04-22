@@ -20,7 +20,7 @@ public class Stack : MonoBehaviour{
         list.Add(newObject);
         _yPos += (newObject.GetComponent<MeshRenderer>().bounds.size.z / factor) / 2f;
 
-        Vector3 posToPlace = new Vector3(transform.position.x, _yPos, transform.position.z + 0.5f);
+        Vector3 posToPlace = new Vector3(transform.position.x, _yPos, transform.position.z + newObject.yOffset);
         newObject.transform.DOMove(posToPlace, 0.5f);
         Vector3 endRotation = newObject.endRotation;
 
