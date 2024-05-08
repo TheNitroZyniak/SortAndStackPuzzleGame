@@ -12,18 +12,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec8b8cfc6ea275c45a133f5f0a595579, type: 3}
   m_Name: Level_4
   m_EditorClassIdentifier: 
-  levelIndex: 0
-  secondsToComplete: 120
+  levelIndex: 4
+  secondsToComplete: 180
   objects:
-  - objectType: 1
+  - objectType: drum
     objectAmount: 6
-  - objectType: 2
-    objectAmount: 9
-  - objectType: 3
+  - objectType: harp
     objectAmount: 6
-  - objectType: 4
-    objectAmount: 9
-  - objectType: 5
+  - objectType: violin
     objectAmount: 6
-  - objectType: 6
-    objectAmount: 9
+  - objectType: tambourine
+    objectAmount: 6
+  - objectType: guitar
+    objectAmount: 6
+  - objectType: radio
+    objectAmount: 6
+  - objectType: giftbox
+    objectAmount: 12
+  - objectType: mike
+    objectAmount: 12

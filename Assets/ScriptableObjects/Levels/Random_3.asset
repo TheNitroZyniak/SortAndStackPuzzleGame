@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec8b8cfc6ea275c45a133f5f0a595579, type: 3}
+  m_Name: Random_3
+  m_EditorClassIdentifier: 
+  levelIndex: 24
+  secondsToComplete: 300
+  objects:
+  - objectType: giftbox
+    objectAmount: 12
+  - objectType: question_box
+    objectAmount: 12
+  - objectType: mike
+    objectAmount: 12
+  - objectType: xylophone
+    objectAmount: 12
+  - objectType: smartphones
+    objectAmount: 12
+  - objectType: drum
+    objectAmount: 12
+  - objectType: volleyball
+    objectAmount: 12
+  - objectType: harp
+    objectAmount: 12
+  - objectType: star
+    objectAmount: 12
+  - objectType: guitar
+    objectAmount: 12
+  - objectType: ball
+    objectAmount: 12
+  - objectType: tambourine
+    objectAmount: 12
+  - objectType: radio
+    objectAmount: 12
+  - objectType: football
+    objectAmount: 12

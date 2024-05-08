@@ -1,56 +1,85 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using System.Collections.Generic;
 using Zenject;
 
 public class Spawner : MonoBehaviour{
 
     [Inject] MainGameManager _mainGameManager;
-    [Inject] ObjectPooler _objectPooler;
+    //[Inject] ObjectPooler _objectPooler;
     [Inject] Timer _timer;
     [Inject] StackManager _stackManager;
+    [Inject] BoxesManager _boxesManager;
     [SerializeField] Level[] _levelsSO;
-
+    [SerializeField] Transform[] tutorPoints;
 
     private int currentLevel;
 
-    int currentSpawner;
-
     private void Start() {
         Application.targetFrameRate = 60;
-
-        CreateLevel();
     }
 
-
     public void CreateLevel() {
+
         currentLevel = PlayerPrefs.GetInt("CurrentLevel");
+        //currentLevel = 357;
 
-        _stackManager.SetStackParams(_levelsSO[currentLevel].objects.Count);
+        List<LevelObjectData> lst;
 
-        for (int i = 0; i < _levelsSO[currentLevel].objects.Count; i++) {
-            SpawnObjects(_levelsSO[currentLevel].objects[i].objectType, _levelsSO[currentLevel].objects[i].objectAmount);
-            _stackManager.CreateStacks(_levelsSO[currentLevel].objects[i].objectType);
+        if (currentLevel >= 20) {
+            lst = _levelsSO[20 + (currentLevel - 20) % 6].Get12Objects();
+        } 
+        else
+            lst = _levelsSO[currentLevel].objects;
+
+        _boxesManager.SetStackParams(lst.Count);
+
+        c = 0;
+
+        
+
+        for (int i = 0; i < lst.Count; i++) {
+            if(currentLevel == 0)
+                SpawnObjects(lst[i].objectType, lst[i].objectAmount, true);
+            else
+                SpawnObjects(lst[i].objectType, lst[i].objectAmount, false);
+
+            _boxesManager.CreateStacks(lst[i].objectType);
+
         }
+        if (currentLevel < 20) {
+            _timer.levelTime = _levelsSO[currentLevel].secondsToComplete;
+            _timer.StartTimer(_levelsSO[currentLevel].secondsToComplete);
+        } 
+        else {
+            _timer.levelTime = _levelsSO[20 + (currentLevel - 20) % 6].secondsToComplete;
+            _timer.StartTimer(_levelsSO[20 + (currentLevel - 20) % 6].secondsToComplete);
+        }
+
     }
 
     public void StartGame() {
+        _timer.levelTime = _levelsSO[currentLevel].secondsToComplete;
         _timer.StartTimer(_levelsSO[currentLevel].secondsToComplete);
     }
-
-    private void SpawnObjects(ObjectType tag, int amount) {
-        currentSpawner++;
-
+    int c;
+    private void SpawnObjects(string tag, int amount, bool firstScene) {
         for (int i = 0; i < amount; i++) {
-            GameObject obj = _objectPooler.SpawnFromPool(tag,
-                new Vector3(Random.Range(-3.5f, 3.5f), Random.Range(-3, 6), Random.Range(0, 3)), 
-                //new Vector3(0, 10, 0),
-                Quaternion.Euler(0, Random.Range(0, 360), 0));
+            GameObject obj;
+            if (!firstScene) {
+                obj = ObjectPooler.Instance.SpawnFromPool(tag,
+                    new Vector3(Random.Range(-4f, 4f), Random.Range(-3, 6), Random.Range(-3, 3)),
+                    Quaternion.Euler(0, Random.Range(0, 360), 0));
+            } 
+            else {
+                obj = ObjectPooler.Instance.SpawnFromPool(tag,
+                    tutorPoints[c].position,
+                    Quaternion.Euler(0, 180, 0));
+
+                c++;
+            }
+
             _mainGameManager.AddToList(obj.GetComponent<SelectableObject>());
 
         }
-
     }
-
-
 }

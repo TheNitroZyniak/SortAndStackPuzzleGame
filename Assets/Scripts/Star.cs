@@ -8,6 +8,10 @@ public class Star : MonoBehaviour{
 
     [SerializeField] private Image goldStar;
 
+    private void OnEnable() {
+        goldStar.transform.localScale = Vector3.zero;
+    }
+
     public void ActivateStar() {
         goldStar.gameObject.SetActive(true);
 

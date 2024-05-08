@@ -5,13 +5,21 @@ using DG.Tweening;
 
 
 public class Stack : MonoBehaviour{
-    List<SelectableObject> list = new List<SelectableObject>();
-    public ObjectType type;
+    public List<SelectableObject> list = new List<SelectableObject>();
+
+    [SerializeField] Transform bottomPoint;
+
+    public string type;
     private float _yPos;
 
     
 
     private void Start() {
+        _yPos = bottomPoint.transform.position.y;
+        //_yPos += GetComponent<MeshRenderer>().bounds.size.y / 2f;
+    }
+
+    public void ResetPos() {
         _yPos = transform.position.y;
         _yPos += GetComponent<MeshRenderer>().bounds.size.y / 2f;
     }

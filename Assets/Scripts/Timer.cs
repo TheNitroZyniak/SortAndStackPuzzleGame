@@ -10,6 +10,9 @@ public class Timer : MonoBehaviour{
     [SerializeField] TextMeshProUGUI text;
     int sec;
 
+    public int levelTime;
+
+
     public void ResumeTimer() {
         StartCoroutine(Cdown(sec));
     }

@@ -13,17 +13,17 @@ MonoBehaviour:
   m_Name: Level_2
   m_EditorClassIdentifier: 
   levelIndex: 2
-  secondsToComplete: 60
+  secondsToComplete: 180
   objects:
-  - objectType: 7
-    objectAmount: 12
-  - objectType: 8
-    objectAmount: 12
-  - objectType: 9
-    objectAmount: 18
-  - objectType: 10
-    objectAmount: 12
-  - objectType: 11
-    objectAmount: 12
-  - objectType: 12
-    objectAmount: 12
+  - objectType: book
+    objectAmount: 6
+  - objectType: book2
+    objectAmount: 6
+  - objectType: coin
+    objectAmount: 6
+  - objectType: newspaper
+    objectAmount: 6
+  - objectType: radio
+    objectAmount: 6
+  - objectType: smartphones
+    objectAmount: 6

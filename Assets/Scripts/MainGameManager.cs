@@ -8,12 +8,18 @@ public class MainGameManager : MonoBehaviour {
     [Inject] UIManager _uiManager;
     [Inject] Timer _timer;
     [Inject] BottomCells _cells;
+    [Inject] Tutorial _tutor;
+    //[Inject] StackManager _stackManager;
+    [Inject] BoxesManager _boxesManager;
 
     private List<SelectableObject> allObjects = new List<SelectableObject>();
-    private bool touchBlocked;
+    private bool touchBlocked, touchBoxBlocked;
 
-    private List<SelectableObject> moveHistory = new List<SelectableObject>();
+    public List<SelectableObject> moveHistory = new List<SelectableObject>();
+    private List<SelectableObject> sortedObjects = new List<SelectableObject>();
     int amountOfUndo = 3;
+
+    int currentLevel;
 
     private bool CheckAllObjects() {
         if(allObjects.Count > 0) return true;
@@ -29,8 +35,42 @@ public class MainGameManager : MonoBehaviour {
             allObjects.Remove(objectToRemove);
             if (!CheckAllObjects()) {
                 _uiManager.OpenVictoryPopup();
+                //StartCoroutine(_boxesManager.MoveFromStacksToCentre());
                 _timer.StopTimer();
             }
+        }
+    }
+
+    public void ChangeTutor() {
+        if (PlayerPrefs.GetInt("CurrentLevel") == 0) {
+            _tutor.SetNextPoint();
+        }
+    }
+
+
+    public void DisableAll() {
+        foreach (var item in allObjects) {
+            item.ResetObject();
+            item.gameObject.SetActive(false);
+        }
+        foreach (var item in moveHistory) {
+            item.ResetObject();
+            item.gameObject.SetActive(false);
+        }
+        foreach (var item in sortedObjects) {
+            item.ResetObject();
+            item.gameObject.SetActive(false);
+        }
+        allObjects.Clear();
+        moveHistory.Clear();
+        sortedObjects.Clear();
+    }
+
+    public void Mix() {
+        foreach (var item in allObjects) {
+            item.transform.SetPositionAndRotation(
+                new Vector3(Random.Range(-3.5f, 3.5f), Random.Range(-3, 6), Random.Range(0, 3)),
+                Quaternion.Euler(0, Random.Range(0, 360), 0));
         }
     }
 
@@ -47,8 +87,20 @@ public class MainGameManager : MonoBehaviour {
         return touchBlocked; 
     }
 
-    public void UnblockTouch() {
+    public void UnblockTouch(SelectableObject thisObject) {
+
+        //_cells.Check3After(thisObject);
+
         touchBlocked = false;
+    }
+
+
+    public bool IsTouchBoxBlocked() {
+        return touchBoxBlocked;
+    }
+
+    public void UnblockBoxTouch() {
+        touchBoxBlocked = false;
     }
 
 
@@ -84,6 +136,7 @@ public class MainGameManager : MonoBehaviour {
 
     public void RemoveFromHistory(SelectableObject obj) {
         moveHistory.Remove(obj);
+        sortedObjects.Add(obj);
     }
 
     public void UndoLastMove() {

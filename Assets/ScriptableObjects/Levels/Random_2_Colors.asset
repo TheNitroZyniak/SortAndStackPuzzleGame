@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec8b8cfc6ea275c45a133f5f0a595579, type: 3}
+  m_Name: Random_2_Colors
+  m_EditorClassIdentifier: 
+  levelIndex: 23
+  secondsToComplete: 300
+  objects:
+  - objectType: magnet
+    objectAmount: 12
+  - objectType: ink
+    objectAmount: 12
+  - objectType: book
+    objectAmount: 12
+  - objectType: robot
+    objectAmount: 12
+  - objectType: number_8
+    objectAmount: 12
+  - objectType: Text_T
+    objectAmount: 12
+  - objectType: car
+    objectAmount: 12
+  - objectType: clock
+    objectAmount: 12
+  - objectType: kettle
+    objectAmount: 12
+  - objectType: driver
+    objectAmount: 12
+  - objectType: ice
+    objectAmount: 12
+  - objectType: number_7
+    objectAmount: 12

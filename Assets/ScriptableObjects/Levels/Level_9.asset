@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec8b8cfc6ea275c45a133f5f0a595579, type: 3}
+  m_Name: Level_9
+  m_EditorClassIdentifier: 
+  levelIndex: 9
+  secondsToComplete: 180
+  objects:
+  - objectType: robot
+    objectAmount: 6
+  - objectType: skull
+    objectAmount: 6
+  - objectType: shield
+    objectAmount: 6
+  - objectType: magnet
+    objectAmount: 6
+  - objectType: canon
+    objectAmount: 12
+  - objectType: tank
+    objectAmount: 12
+  - objectType: driver
+    objectAmount: 18
+  - objectType: nut
+    objectAmount: 18

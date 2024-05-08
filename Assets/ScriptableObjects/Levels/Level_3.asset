@@ -12,16 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec8b8cfc6ea275c45a133f5f0a595579, type: 3}
   m_Name: Level_3
   m_EditorClassIdentifier: 
-  levelIndex: 2
-  secondsToComplete: 90
+  levelIndex: 3
+  secondsToComplete: 180
   objects:
-  - objectType: 1
+  - objectType: Text_N
+    objectAmount: 6
+  - objectType: Text_E
+    objectAmount: 6
+  - objectType: Text_X
+    objectAmount: 6
+  - objectType: Text_T
+    objectAmount: 6
+  - objectType: note
     objectAmount: 12
-  - objectType: 4
+  - objectType: ink
     objectAmount: 12
-  - objectType: 5
-    objectAmount: 18
-  - objectType: 6
-    objectAmount: 12
-  - objectType: 3
-    objectAmount: 18
