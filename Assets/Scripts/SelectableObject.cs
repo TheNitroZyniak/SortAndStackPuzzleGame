@@ -6,6 +6,7 @@ using UnityEngine.EventSystems;
 public class SelectableObject : MonoBehaviour {
     [Inject] MainGameManager _mainGameManager;
     [Inject] BottomCells _bottomCells;
+    [Inject] BoxesManager _boxesManager;
 
     public string objectType;
 
@@ -25,56 +26,21 @@ public class SelectableObject : MonoBehaviour {
     public float yOffset;
     public bool isTwitching;
 
+    public bool isBeingRemoved;
     public Vector3 twitchingPosition;
 
+    public int removeList;
     private void Start() {
         _rb = GetComponent<Rigidbody>();
         _cd = GetComponent<Collider>();
         transform.localScale = transform.localScale * 2;
-
+        currentCell = -1;
         startScale = transform.localScale;
     }
 
-    bool allowRotate;
 
-    private void Update() {
-        Twitch();
-
-        if (allowRotate) {
-            //transform.RotateAround(new Vector3(50, 0, 0));
-        }
-    }
-
-    public void StarRotate() {
-        allowRotate = true;
-    }
 
     public void StopRotate() {
-        allowRotate = false;
-    }
-
-    public void Twitch() {
-        if (isTwitching) {
-            transform.position = new Vector3(twitchingPosition.x + Random.Range(-0.1f, 0.1f), 
-                twitchingPosition.y + Random.Range(-0.1f, 0.1f), transform.position.z);
-        }
-    }
-
-    public void UnblockTwitching() {
-        twitchingPosition = transform.position;
-        isTwitching = true; 
-    }
-    public void BlockTwitching() {
-        transform.position = twitchingPosition;
-        isTwitching = false;
-    }
-    private void OnMouseDown() {
-        //if (!_mainGameManager.IsTouchBlocked()) {
-            if (!isSelected) {
-                Select(false);
-                //_mainGameManager.BlockTouch();
-            }
-        //}
     }
 
     public void Select(bool magnet) {
@@ -84,12 +50,30 @@ public class SelectableObject : MonoBehaviour {
         Disappear(magnet);
     }
 
+
+
+    public void SelectToBox() {
+        _cd.enabled = false;
+        _rb.useGravity = false;
+        _rb.isKinematic = true;
+        _rb.angularVelocity = Vector3.zero;
+        _rb.velocity = Vector3.zero;
+
+        _boxesManager.AddToOneOfBoxes(this);
+
+    }
+
+
+
+
     public void ResetObject() {
         isSelected = false;
         _rb.useGravity = true;
         _rb.isKinematic = false;
         _cd.enabled = true;
         transform.localScale = startScale;
+        isBeingRemoved = false;
+        currentCell = -1;
     }
 
     public void ToBox() {
@@ -99,24 +83,28 @@ public class SelectableObject : MonoBehaviour {
         _rb.velocity = Vector3.forward * 5;
     }
 
+    
+
+
     public void Disappear(bool magnet) {
         _cd.enabled = false;
         _rb.useGravity = false;
         _rb.isKinematic = true;
         _rb.angularVelocity = Vector3.zero;
         _rb.velocity = Vector3.zero;
-        Vector3 inputPos = Camera.main.WorldToScreenPoint(transform.position);
 
-        _bottomCells.UpdateBefore(this, id);
+        Vector3 pos = _bottomCells.UpdateBefore(this, id);
         _mainGameManager.ChangeTutor();
 
-
-        Vector3 pos = _bottomCells.GetCurrentCell();
         pos = new Vector3(pos.x, pos.y + yOffset, pos.z);
 
+
+        
+
+        _bottomCells.UpdateSelectedCounter();
         if (!magnet) {
             transform.DOMove(pos, 35).SetSpeedBased(true).OnComplete(() => {
-                _mainGameManager.RemoveFromList(this);
+                _mainGameManager.RemoveFromList(this, true);
                 _bottomCells.UpdateSelectedBallsDisplay(this, id);
                 
                 _mainGameManager.UnblockTouch(this);
@@ -125,7 +113,7 @@ public class SelectableObject : MonoBehaviour {
         } 
         else {
             transform.DOMove(pos, 0.15f).OnComplete(() => {
-                _mainGameManager.RemoveFromList(this);
+                _mainGameManager.RemoveFromList(this, true);
                 _bottomCells.UpdateSelectedBallsDisplay(this, id);
                 
                 _mainGameManager.UnblockTouch(this);
@@ -153,6 +141,11 @@ public class SelectableObject : MonoBehaviour {
 
     public void MakeKinematic(bool doKin) {
         _rb.isKinematic = doKin;
+    }
+
+
+    public void ActivateForSelectionToBox(bool activate) {
+        _cd.enabled = activate;
     }
 
 }

@@ -72,4 +72,16 @@ public class ObjectPooler : MonoBehaviour{
     public void DisableAll() {
 
     }
+
+    public int AmountOfAllEnabledObjectsByName(string tag) {
+        int numActiveObjects = 0;
+        foreach (GameObject obj in poolDictionary[tag]) {
+            if (obj.activeSelf) 
+                numActiveObjects++;
+            
+        }
+        return numActiveObjects;
+    }
+
+
 }

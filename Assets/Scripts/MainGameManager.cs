@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using Zenject;
+using ModestTree;
+using static TMPro.Examples.TMP_ExampleScript_01;
 
 public class MainGameManager : MonoBehaviour {
     [Inject] UIManager _uiManager;
@@ -27,16 +29,17 @@ public class MainGameManager : MonoBehaviour {
     }
 
     public void AddToList(SelectableObject newObject) => allObjects.Add(newObject);
-    public void RemoveFromList(SelectableObject objectToRemove) {
+    public void RemoveFromList(SelectableObject objectToRemove, bool save) {
         if (allObjects.Any(obj => obj == objectToRemove)) {
             
-            SaveMove(objectToRemove);
+            if(save)
+                SaveMove(objectToRemove);
 
             allObjects.Remove(objectToRemove);
             if (!CheckAllObjects()) {
-                _uiManager.OpenVictoryPopup();
+                //_uiManager.OpenVictoryPopup();
                 //StartCoroutine(_boxesManager.MoveFromStacksToCentre());
-                _timer.StopTimer();
+                //_timer.StopTimer();
             }
         }
     }
@@ -87,9 +90,14 @@ public class MainGameManager : MonoBehaviour {
         return touchBlocked; 
     }
 
+    public void Unblock() {
+        touchBlocked = false;
+    }
+
+
     public void UnblockTouch(SelectableObject thisObject) {
 
-        //_cells.Check3After(thisObject);
+        _cells.Check3After(thisObject);
 
         touchBlocked = false;
     }
@@ -148,6 +156,28 @@ public class MainGameManager : MonoBehaviour {
             objectToPlace.ToCentre();
             allObjects.Add(objectToPlace);
             moveHistory.Remove(objectToPlace);
+        }
+    }
+
+    public void ActivateAllObjectsInCells() {
+        foreach (SelectableObject obj in moveHistory) {
+            obj.ActivateForSelectionToBox(true);
+        }
+    }
+
+    public void DeactivateObjectsInCellsAmongSelected(List<string> objectTypes) {
+
+        foreach(SelectableObject obj in moveHistory) {
+            bool isMatchingType = objectTypes.Any(type => type == obj.objectType);
+            if (!isMatchingType) {
+                obj.ActivateForSelectionToBox(false);
+            }
+        }
+    }
+
+    public void CheckWin() {
+        if(allObjects.IsEmpty() && moveHistory.IsEmpty()) {
+            _uiManager.OpenVictoryPopup();
         }
     }
 

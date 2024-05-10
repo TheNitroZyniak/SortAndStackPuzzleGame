@@ -7,7 +7,7 @@ public class Spawner : MonoBehaviour{
     [Inject] MainGameManager _mainGameManager;
     //[Inject] ObjectPooler _objectPooler;
     [Inject] Timer _timer;
-    [Inject] StackManager _stackManager;
+    [Inject] BottomCells _bottomCells;
     [Inject] BoxesManager _boxesManager;
     [SerializeField] Level[] _levelsSO;
     [SerializeField] Transform[] tutorPoints;
@@ -21,7 +21,7 @@ public class Spawner : MonoBehaviour{
     public void CreateLevel() {
 
         currentLevel = PlayerPrefs.GetInt("CurrentLevel");
-        //currentLevel = 357;
+        currentLevel = 4;
 
         List<LevelObjectData> lst;
 
@@ -31,11 +31,12 @@ public class Spawner : MonoBehaviour{
         else
             lst = _levelsSO[currentLevel].objects;
 
+        
         _boxesManager.SetStackParams(lst.Count);
 
         c = 0;
 
-        
+        _bottomCells.ClearDictionary();
 
         for (int i = 0; i < lst.Count; i++) {
             if(currentLevel == 0)
@@ -43,9 +44,19 @@ public class Spawner : MonoBehaviour{
             else
                 SpawnObjects(lst[i].objectType, lst[i].objectAmount, false);
 
+            
+            _bottomCells.CreateDictionary(lst[i].objectType);
             _boxesManager.CreateStacks(lst[i].objectType);
 
         }
+
+
+
+
+
+        _boxesManager.SetBorders();
+
+
         if (currentLevel < 20) {
             _timer.levelTime = _levelsSO[currentLevel].secondsToComplete;
             _timer.StartTimer(_levelsSO[currentLevel].secondsToComplete);

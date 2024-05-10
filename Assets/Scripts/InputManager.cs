@@ -38,8 +38,11 @@ public class InputManager : MonoBehaviour
             if (doIt) {
                 if (!_mainGameManager.IsTouchBlocked()) {
                     _audioManager.PlaySound(1);
-                    ourHit.collider.gameObject.GetComponent<SelectableObject>().Select(false);
-                    _mainGameManager.BlockTouch();
+
+
+                    //ourHit.collider.gameObject.GetComponent<SelectableObject>().Select(false);
+                    ourHit.collider.gameObject.GetComponent<SelectableObject>().SelectToBox();
+                    
                 }
             }
         }
