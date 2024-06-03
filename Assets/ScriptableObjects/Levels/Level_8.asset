@@ -21,9 +21,9 @@ MonoBehaviour:
     objectAmount: 12
   - objectType: shield
     objectAmount: 12
-  - objectType: ring2
+  - objectType: bone
     objectAmount: 12
   - objectType: ufo
     objectAmount: 12
-  - objectType: question mark
+  - objectType: book
     objectAmount: 6

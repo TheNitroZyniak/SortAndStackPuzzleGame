@@ -14,7 +14,8 @@ GameObject:
   - component: {fileID: -8266222452752229845}
   - component: {fileID: -1543723731358331256}
   - component: {fileID: -1548439516603210068}
-  - component: {fileID: 8287610326707064124}
+  - component: {fileID: 196612330593117613}
+  - component: {fileID: -8577152611093588518}
   m_Layer: 0
   m_Name: Text_H
   m_TagString: SelectableObject
@@ -121,7 +122,7 @@ MeshCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1300366798299380}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 231b363a8a8084b4bb0053ec22445963, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -157,8 +158,28 @@ MonoBehaviour:
   startScale: {x: 0, y: 0, z: 0}
   yOffset: 0
   isTwitching: 0
+  isBeingRemoved: 0
   twitchingPosition: {x: 0, y: 0, z: 0}
---- !u!114 &8287610326707064124
+  removeList: 0
+  endScales:
+  - 0.7
+  - 0.6
+  - 0.5
+  - 0.4
+  endScaleID: 0
+--- !u!114 &196612330593117613
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1300366798299380}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4f30830e4c36a4439e97e4b2c5fe6ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-8577152611093588518
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

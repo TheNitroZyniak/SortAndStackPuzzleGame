@@ -11,10 +11,11 @@ GameObject:
   - component: {fileID: 4705964541525902}
   - component: {fileID: 33627473038400088}
   - component: {fileID: 23826363507818432}
+  - component: {fileID: 7340777861351742322}
   - component: {fileID: 872853754627892758}
-  - component: {fileID: -8658821121337380268}
   - component: {fileID: -3685520988701069634}
-  - component: {fileID: -5520895821418571147}
+  - component: {fileID: -3129633176359346264}
+  - component: {fileID: 6645126326871990544}
   m_Layer: 0
   m_Name: key
   m_TagString: SelectableObject
@@ -87,6 +88,27 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &7340777861351742322
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1586265210363762}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.56, y: 1.08, z: 0.15}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &872853754627892758
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -114,28 +136,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!64 &-8658821121337380268
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1586265210363762}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300000, guid: 2779109ea0d26ab4f9b431387a7531cc, type: 3}
 --- !u!114 &-3685520988701069634
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -157,8 +157,28 @@ MonoBehaviour:
   startScale: {x: 0, y: 0, z: 0}
   yOffset: 0
   isTwitching: 0
+  isBeingRemoved: 0
   twitchingPosition: {x: 0, y: 0, z: 0}
---- !u!114 &-5520895821418571147
+  removeList: 0
+  endScales:
+  - 1
+  - 1
+  - 1
+  - 1
+  endScaleID: 0
+--- !u!114 &-3129633176359346264
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1586265210363762}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4f30830e4c36a4439e97e4b2c5fe6ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6645126326871990544
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

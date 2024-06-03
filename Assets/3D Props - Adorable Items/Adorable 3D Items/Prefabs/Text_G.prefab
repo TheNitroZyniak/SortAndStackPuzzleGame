@@ -14,7 +14,8 @@ GameObject:
   - component: {fileID: -3633074203898001345}
   - component: {fileID: 4318357803294220796}
   - component: {fileID: -4675329240261179423}
-  - component: {fileID: -4580399689843082428}
+  - component: {fileID: 2602276569382109243}
+  - component: {fileID: -6355659201439017720}
   m_Layer: 0
   m_Name: Text_G
   m_TagString: SelectableObject
@@ -157,8 +158,28 @@ MonoBehaviour:
   startScale: {x: 0, y: 0, z: 0}
   yOffset: 0
   isTwitching: 0
+  isBeingRemoved: 0
   twitchingPosition: {x: 0, y: 0, z: 0}
---- !u!114 &-4580399689843082428
+  removeList: 0
+  endScales:
+  - 1
+  - 1
+  - 1
+  - 1
+  endScaleID: 0
+--- !u!114 &2602276569382109243
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1468467521938544}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4f30830e4c36a4439e97e4b2c5fe6ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-6355659201439017720
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

@@ -14,7 +14,8 @@ GameObject:
   - component: {fileID: 2297031840406251075}
   - component: {fileID: 1453824048437372779}
   - component: {fileID: 4739402604556980367}
-  - component: {fileID: -8993096688106014185}
+  - component: {fileID: -4078020229284200581}
+  - component: {fileID: -5285947036149244781}
   m_Layer: 0
   m_Name: nut
   m_TagString: SelectableObject
@@ -157,8 +158,28 @@ MonoBehaviour:
   startScale: {x: 0, y: 0, z: 0}
   yOffset: 0
   isTwitching: 0
+  isBeingRemoved: 0
   twitchingPosition: {x: 0, y: 0, z: 0}
---- !u!114 &-8993096688106014185
+  removeList: 0
+  endScales:
+  - 1
+  - 1
+  - 1
+  - 1
+  endScaleID: 0
+--- !u!114 &-4078020229284200581
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1558733401842154}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4f30830e4c36a4439e97e4b2c5fe6ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-5285947036149244781
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

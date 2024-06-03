@@ -14,7 +14,8 @@ GameObject:
   - component: {fileID: 8654462120721995747}
   - component: {fileID: 5345697165133498601}
   - component: {fileID: 4156175918199435114}
-  - component: {fileID: -7334609239280090508}
+  - component: {fileID: -3875849675609705033}
+  - component: {fileID: 7094672864605249984}
   m_Layer: 0
   m_Name: yogurt
   m_TagString: SelectableObject
@@ -158,8 +159,28 @@ MonoBehaviour:
   startScale: {x: 0, y: 0, z: 0}
   yOffset: 0
   isTwitching: 0
+  isBeingRemoved: 0
   twitchingPosition: {x: 0, y: 0, z: 0}
---- !u!114 &-7334609239280090508
+  removeList: 0
+  endScales:
+  - 1
+  - 1
+  - 1
+  - 1
+  endScaleID: 0
+--- !u!114 &-3875849675609705033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1114605598708622}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4f30830e4c36a4439e97e4b2c5fe6ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7094672864605249984
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

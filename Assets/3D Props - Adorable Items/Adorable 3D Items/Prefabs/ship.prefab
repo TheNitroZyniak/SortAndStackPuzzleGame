@@ -14,7 +14,8 @@ GameObject:
   - component: {fileID: 7886269141657019158}
   - component: {fileID: 5948328837947651955}
   - component: {fileID: -7548267740279868769}
-  - component: {fileID: -5129428188240185459}
+  - component: {fileID: 1778236211977193}
+  - component: {fileID: -2265768589196342008}
   m_Layer: 0
   m_Name: ship
   m_TagString: SelectableObject
@@ -157,8 +158,28 @@ MonoBehaviour:
   startScale: {x: 0, y: 0, z: 0}
   yOffset: 0
   isTwitching: 0
+  isBeingRemoved: 0
   twitchingPosition: {x: 0, y: 0, z: 0}
---- !u!114 &-5129428188240185459
+  removeList: 0
+  endScales:
+  - 1
+  - 1
+  - 1
+  - 1
+  endScaleID: 0
+--- !u!114 &1778236211977193
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1817408250517870}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4f30830e4c36a4439e97e4b2c5fe6ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-2265768589196342008
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

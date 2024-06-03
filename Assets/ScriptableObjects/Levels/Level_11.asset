@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Level_11
   m_EditorClassIdentifier: 
   levelIndex: 11
-  secondsToComplete: 180
+  secondsToComplete: 240
   objects:
   - objectType: kettle
     objectAmount: 12

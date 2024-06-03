@@ -14,7 +14,8 @@ GameObject:
   - component: {fileID: 1901232774660918935}
   - component: {fileID: 1384052036205777944}
   - component: {fileID: -3692420912213396139}
-  - component: {fileID: 7667720663529700547}
+  - component: {fileID: -7500631581337990957}
+  - component: {fileID: 7573476347757652660}
   m_Layer: 0
   m_Name: guitar
   m_TagString: SelectableObject
@@ -158,8 +159,28 @@ MonoBehaviour:
   startScale: {x: 0, y: 0, z: 0}
   yOffset: 0
   isTwitching: 0
+  isBeingRemoved: 0
   twitchingPosition: {x: 0, y: 0, z: 0}
---- !u!114 &7667720663529700547
+  removeList: 0
+  endScales:
+  - 1
+  - 1
+  - 1
+  - 1
+  endScaleID: 0
+--- !u!114 &-7500631581337990957
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1870933074804732}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4f30830e4c36a4439e97e4b2c5fe6ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7573476347757652660
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

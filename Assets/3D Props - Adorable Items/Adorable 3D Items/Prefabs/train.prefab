@@ -14,7 +14,8 @@ GameObject:
   - component: {fileID: -2571518763912803498}
   - component: {fileID: -611921969692154660}
   - component: {fileID: -27067185586151019}
-  - component: {fileID: -4853672629934023800}
+  - component: {fileID: -7940326114372494090}
+  - component: {fileID: 4112917924085043929}
   m_Layer: 0
   m_Name: train
   m_TagString: SelectableObject
@@ -157,8 +158,28 @@ MonoBehaviour:
   startScale: {x: 0, y: 0, z: 0}
   yOffset: 0
   isTwitching: 0
+  isBeingRemoved: 0
   twitchingPosition: {x: 0, y: 0, z: 0}
---- !u!114 &-4853672629934023800
+  removeList: 0
+  endScales:
+  - 1
+  - 1
+  - 1
+  - 1
+  endScaleID: 0
+--- !u!114 &-7940326114372494090
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1956216323308332}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4f30830e4c36a4439e97e4b2c5fe6ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4112917924085043929
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

@@ -3,23 +3,39 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
+using TMPro;
+using DG.Tweening;
+using UnityEditor.Rendering;
 
 public class BottomCells : MonoBehaviour{
     [Inject] BoxesManager _boxesManager;
     [Inject] MainGameManager _mainGameManager;
     [SerializeField] ObjectCell[] cells;
 
-    private Dictionary<string, Queue<SelectableObject>> selectedObjects = new Dictionary<string, Queue<SelectableObject>>();
+    private Dictionary<string, Stack<SelectableObject>> selectedObjects = new Dictionary<string, Stack<SelectableObject>>();
 
     private int selectedObjectCounter = -1;
 
+    public static int currentCoroutine;
+
+
     public void CreateDictionary(string key) {
-        Queue<SelectableObject> objectQueue = new Queue<SelectableObject>();
+        Stack<SelectableObject> objectQueue = new Stack<SelectableObject>();
         selectedObjects.Add(key, objectQueue);
     }
 
     public void ClearDictionary() {
         selectedObjects.Clear();
+        selectedObjectCounter = -1;
+        currentCoroutine = 0;
+
+        objectsToRemove1.Clear();
+        objectsToRemove2.Clear();
+
+        foreach(ObjectCell cell in cells) {
+            cell.ClearCell(false);
+        }
+
     }
 
     List<SelectableObject> objectsToRemove1 = new List<SelectableObject>();
@@ -27,25 +43,36 @@ public class BottomCells : MonoBehaviour{
 
     Coroutine previosCoroutine;
 
+    public bool CheckIfAllow(SelectableObject newObject) {
+        if (currentCoroutine >= 2 && selectedObjects[newObject.objectType].Count == 2) {
+            return false;
+        }
+        else
+            return true;
+    }
 
     public Vector3 UpdateBefore(SelectableObject newObject, int id) {
         
-        selectedObjects[newObject.objectType].Enqueue(newObject);
+        selectedObjects[newObject.objectType].Push(newObject);
 
         if (selectedObjects[newObject.objectType].Count == 3) {
             if (objectsToRemove1.Count == 0) {
-                //objectsToRemove1 = new List<SelectableObject>();
-                foreach (SelectableObject ourObject in selectedObjects[newObject.objectType]) {
+                for (int i = 0; i < 3; i++) {
+                    SelectableObject ourObject = selectedObjects[newObject.objectType].Pop();
+                    //selectedObjects[newObject.objectType]
                     ourObject.removeList = 1;
                     objectsToRemove1.Add(ourObject);
                 }
+                objectsToRemove1.Reverse();
             } 
             else {
-                //objectsToRemove2 = new List<SelectableObject>();
-                foreach (SelectableObject ourObject in selectedObjects[newObject.objectType]) {
+                //foreach (SelectableObject ourObject in selectedObjects[newObject.objectType]) {
+                for (int i = 0; i < 3; i++) {
+                    SelectableObject ourObject = selectedObjects[newObject.objectType].Pop();
                     ourObject.removeList = 2;
                     objectsToRemove2.Add(ourObject);
                 }
+                objectsToRemove2.Reverse();
             }
             
             
@@ -81,7 +108,8 @@ public class BottomCells : MonoBehaviour{
                 cells[insertIndex].SetCell(newObject, id, false);
                 if (selectedObjectCounter == 6) _mainGameManager.BlockTouch();
                 return cells[insertIndex].transform.position;
-            } else {
+            } 
+            else {
                 print("Check me!");
                 if (selectedObjectCounter == 6) _mainGameManager.BlockTouch();
                 return cells[selectedObjectCounter].transform.position;
@@ -93,17 +121,22 @@ public class BottomCells : MonoBehaviour{
             cells[selectedObjectCounter].SetCell(newObject, id, false);
             return cells[selectedObjectCounter].transform.position;
         }
-        //if(move) selectedObjectCounter--;
-
-        
-        
     }
 
 
-
-
     [SerializeField] MeshRenderer[] indikators;
+    [SerializeField] TextMeshProUGUI currentCoroutText;
+
+
+    public void UpdateAfterUndo(string typeId) {
+        selectedObjects[typeId].Pop();
+    }
+
+
     private void Update() {
+
+        //currentCoroutText.text = currentCoroutine.ToString();
+
         //for (int i = 0; i < cells.Length; i++) {
         //    if (cells[i].IsEmpty())
         //        indikators[i].material.color = Color.green;
@@ -113,22 +146,26 @@ public class BottomCells : MonoBehaviour{
         //if (selectedObjectCounter + 1 < 7) {
         //    indikators[selectedObjectCounter + 1].material.color = Color.yellow;
         //}
-
-
-
-        //foreach (SelectableObject obj in _mainGameManager.moveHistory) {
-        //    Check3After(obj);
+        //for (int i = 0; i < cells.Length; i++) {
+        //    if (cells[i].IsEmpty()) {
+        //        selectedObjectCounter = i - 1;
+        //        break;
+        //    }
         //}
-    }
 
-    public void UpdateSelectedCounter() {
-        //for (int i = selectedObjectCounter + 1; i < cells.Length; i++) {
-        //    if (!cells[i].IsEmpty()) selectedObjectCounter++;
-        //}
+
+        foreach (SelectableObject obj in _mainGameManager.moveHistory) {
+            Check3After(obj);
+        }
     }
 
     public Vector3 GetCurrentCell() {
         return cells[selectedObjectCounter].transform.position;
+    }
+
+
+    public int GetCurrentCellId() {
+        return selectedObjectCounter;
     }
 
     public void UpdateSelectedBallsDisplay(SelectableObject newObject, int id) {
@@ -145,6 +182,8 @@ public class BottomCells : MonoBehaviour{
     }
 
 
+    [SerializeField] TextMeshProUGUI objectsToRemove;
+
     public void RemoveBefore(List<SelectableObject> selObjects, string id) {
         int count = 0;
         string objType = String.Empty;
@@ -157,7 +196,9 @@ public class BottomCells : MonoBehaviour{
         }
 
         if (selObjects != null) {
+
             if (selObjects.Count == 3) {
+
                 foreach (Box box in _boxesManager.boxesList) {
                     if (box.type == objType) {
                         bool block = true;
@@ -166,55 +207,48 @@ public class BottomCells : MonoBehaviour{
                                 block = false;
                             }
                         }
-                        if (block)
-                            _mainGameManager.BlockTouch();
 
-                        List<SelectableObject> takenObjects = new List<SelectableObject>();
+                        objectsToRemove.text = selObjects[0].name + " " + selObjects[1].name + " " + selObjects[2].name;
                         RemoveAndShiftCells(selObjects, box);
-                        //selObjects.Clear();
                     }
                 }
+
             } 
-            //else if (selectedObjectCounter + 1 == cells.Length) {
-            //    _mainGameManager.GameLost();
-            //}
+            else if (selectedObjectCounter + 1 == cells.Length) {
+                _mainGameManager.GameLost();
+            }
         } 
         else if (selectedObjectCounter + 1 == cells.Length) {
             _mainGameManager.GameLost();
         }
     }
 
-
-
-
     public void Check3After(SelectableObject thisObject) {
         int c = thisObject.currentCell;
-
-        if(thisObject.transform.position != cells[c].transform.position)
-            thisObject.transform.position = cells[c].transform.position;
-
+        thisObject.transform.position = cells[c].transform.position;
     }
 
 
     public void RemoveAndShiftCells(List<SelectableObject> removeObjects, Box boxToPlace) {
-        foreach(SelectableObject obj in removeObjects) 
+        foreach (SelectableObject obj in removeObjects)       
             _mainGameManager.RemoveFromHistory(obj);
-
-        StartCoroutine(DoIEnum(removeObjects, boxToPlace));
         
+        StartCoroutine(DoIEnum(removeObjects, boxToPlace));
     }
 
     IEnumerator DoIEnum(List<SelectableObject> removeObjects, Box boxToPlace) {
+        currentCoroutine++;
+
         if (previosCoroutine != null) yield return previosCoroutine;
         previosCoroutine = StartCoroutine(Remove3(removeObjects, boxToPlace));
     }
 
     IEnumerator Remove3(List<SelectableObject> removeObjects, Box boxToPlace) {
 
-        
-
         _boxesManager.MoveBoxes(boxToPlace);
         int c = selectedObjectCounter + 1;
+
+        if (removeObjects.Count == 0) yield return null;
 
         int first = removeObjects[0].currentCell;
         int counter = first;
@@ -222,18 +256,10 @@ public class BottomCells : MonoBehaviour{
             obj.removeList = 0;
         }
 
-        //yield return new WaitForSeconds(0.5f);
-
-        
-        foreach (SelectableObject obj in removeObjects) {       
-            _boxesManager.AddToBoxes(obj, boxToPlace);  
-            yield return new WaitForSeconds(0.25f);
-        }
-        foreach (SelectableObject obj in removeObjects) {         
+        foreach (SelectableObject obj in removeObjects) {
             cells[counter].ClearCell(true);
             counter++;
         }
-        removeObjects.Clear();
 
         int index = first;
         bool removeLast = index == 0 ? true : false;
@@ -258,9 +284,34 @@ public class BottomCells : MonoBehaviour{
         }
 
         for (int i = index; i < cells.Length; i++) cells[i].ClearCell(false);
-
-        _mainGameManager.Unblock();
+        
         selectedObjectCounter--;
+        _mainGameManager.Unblock();
+
+        List<SelectableObject> finalObjects = new List<SelectableObject>();
+        for(int i = 0; i < removeObjects.Count; i++) 
+            finalObjects.Add(removeObjects[i]);
+
+        removeObjects.Clear();
+
+        foreach (SelectableObject obj in finalObjects) {
+            Vector3 pos = obj.transform.position;
+            obj.transform.DOMove(new Vector3(pos.x, pos.y, pos.z - 2), 0.1f);
+
+            Vector3 scale = obj.transform.localScale;
+
+            obj.transform.DOScale(scale * 1.25f, 0.2f);
+        }
+
+        yield return new WaitForSeconds(0.1f);
+
+        foreach (SelectableObject obj in finalObjects) {
+            _boxesManager.AddToBoxes(obj, boxToPlace);
+            yield return new WaitForSeconds(0.15f);
+        }
+        finalObjects.Clear();
+        yield return new WaitForSeconds(0.2f);
+        currentCoroutine--;
     }
 
     public void ChangeCells(int pos) {
@@ -278,7 +329,33 @@ public class BottomCells : MonoBehaviour{
         selectedObjectCounter--;
     }
 
+    public void CheckAllCells() {
+        for (int i = 0; i < cells.Length; i++) {
+            if (cells[i].IsEmpty()) {
+                int nearestIndex = FindNearestNonEmptyCellIndex(i);
+                if (nearestIndex != -1) {
+                    cells[i].SetCell(cells[nearestIndex].currentObject, 0, true);
+                    cells[nearestIndex].ClearCell(false);
+                }
+            }
+        }
+    }
 
+
+    int FindNearestNonEmptyCellIndex(int currentIndex) {
+        int nearestIndex = -1;
+        float minDistance = float.MaxValue;
+        for (int i = currentIndex; i < cells.Length; i++) {
+            if (!cells[i].IsEmpty() && i != currentIndex) {
+                float distance = Vector3.Distance(cells[currentIndex].transform.position, cells[i].transform.position);
+                if (distance < minDistance) {
+                    minDistance = distance;
+                    nearestIndex = i;
+                }
+            }
+        }
+        return nearestIndex;
+    }
 
 
     public void MoveLeft(int currentCell) {

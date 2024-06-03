@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "537317232753",
+    "project_id": "match-and-sort",
+    "storage_bucket": "match-and-sort.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:537317232753:android:13a3027cd61057387f8bd0",
+        "android_client_info": {
+          "package_name": "com.match.sort.goods3d.puzzle"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAD261a_ARs92PUWGkyc-2vM8G-u3K3daM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

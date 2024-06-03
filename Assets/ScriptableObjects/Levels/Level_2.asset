@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: Level_2
   m_EditorClassIdentifier: 
   levelIndex: 2
-  secondsToComplete: 180
+  secondsToComplete: 120
   objects:
   - objectType: book
     objectAmount: 6
-  - objectType: book2
+  - objectType: key
     objectAmount: 6
   - objectType: coin
     objectAmount: 6

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Level_14
   m_EditorClassIdentifier: 
   levelIndex: 14
-  secondsToComplete: 180
+  secondsToComplete: 300
   objects:
   - objectType: pig
     objectAmount: 6

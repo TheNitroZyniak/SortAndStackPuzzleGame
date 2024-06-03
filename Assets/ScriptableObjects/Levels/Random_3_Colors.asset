@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Random_3_Colors
   m_EditorClassIdentifier: 
   levelIndex: 25
-  secondsToComplete: 300
+  secondsToComplete: 360
   objects:
   - objectType: magnet
     objectAmount: 12
@@ -25,7 +25,7 @@ MonoBehaviour:
     objectAmount: 12
   - objectType: yam
     objectAmount: 12
-  - objectType: exclamation mark
+  - objectType: fork
     objectAmount: 12
   - objectType: rose
     objectAmount: 12

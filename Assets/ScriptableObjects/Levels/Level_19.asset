@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Level_19
   m_EditorClassIdentifier: 
   levelIndex: 19
-  secondsToComplete: 180
+  secondsToComplete: 360
   objects:
   - objectType: duck
     objectAmount: 12
@@ -37,5 +37,5 @@ MonoBehaviour:
     objectAmount: 12
   - objectType: ball
     objectAmount: 12
-  - objectType: baloon
+  - objectType: balloon
     objectAmount: 12

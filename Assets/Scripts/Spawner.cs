@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using Zenject;
+//using Firebase.Analytics;
 
 public class Spawner : MonoBehaviour{
 
@@ -12,7 +13,13 @@ public class Spawner : MonoBehaviour{
     [SerializeField] Level[] _levelsSO;
     [SerializeField] Transform[] tutorPoints;
 
-    private int currentLevel;
+
+
+    public int currentLevel;
+
+    private void Awake() {
+        PlayerPrefs.SetInt("CurrentLevel", currentLevel);
+    }
 
     private void Start() {
         Application.targetFrameRate = 60;
@@ -20,8 +27,17 @@ public class Spawner : MonoBehaviour{
 
     public void CreateLevel() {
 
-        currentLevel = PlayerPrefs.GetInt("CurrentLevel");
-        currentLevel = 4;
+        //currentLevel = PlayerPrefs.GetInt("CurrentLevel");
+
+        //currentLevel = 4;
+        
+
+        //StartLevel level = new StartLevel();
+        //level.level = currentLevel;
+        //string json = JsonUtility.ToJson(level);
+        //AppMetrica.Instance.ReportEvent("Level_Started", json);
+
+        //FirebaseAnalytics.LogEvent("Level_Started", new Parameter("Level", currentLevel));
 
         List<LevelObjectData> lst;
 
@@ -33,6 +49,8 @@ public class Spawner : MonoBehaviour{
 
         
         _boxesManager.SetStackParams(lst.Count);
+
+        _mainGameManager.UnblockTouch();
 
         c = 0;
 
@@ -80,12 +98,15 @@ public class Spawner : MonoBehaviour{
                 obj = ObjectPooler.Instance.SpawnFromPool(tag,
                     new Vector3(Random.Range(-4f, 4f), Random.Range(-3, 6), Random.Range(-3, 3)),
                     Quaternion.Euler(0, Random.Range(0, 360), 0));
+
+                obj.GetComponent<SelectableObject>().endScaleID = (amount / 6) - 1;
             } 
             else {
                 obj = ObjectPooler.Instance.SpawnFromPool(tag,
                     tutorPoints[c].position,
                     Quaternion.Euler(0, 180, 0));
 
+                obj.GetComponent<SelectableObject>().endScaleID = (amount / 6) - 1;
                 c++;
             }
 

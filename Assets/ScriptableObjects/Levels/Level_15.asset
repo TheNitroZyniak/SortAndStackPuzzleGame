@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Level_15
   m_EditorClassIdentifier: 
   levelIndex: 15
-  secondsToComplete: 180
+  secondsToComplete: 300
   objects:
   - objectType: cat
     objectAmount: 24

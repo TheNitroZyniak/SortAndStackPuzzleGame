@@ -12,7 +12,7 @@ public class Booster : MonoBehaviour{
 
     private void Start() {
         _amount = PlayerPrefs.GetInt(_boosterName.ToString());
-        _amountText.text = _amount.ToString();
+        //_amountText.text = _amount.ToString();
 
     }
 

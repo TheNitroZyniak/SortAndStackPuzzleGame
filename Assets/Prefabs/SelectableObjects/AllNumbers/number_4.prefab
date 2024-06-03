@@ -14,7 +14,8 @@ GameObject:
   - component: {fileID: -1696211491984265330}
   - component: {fileID: 1323073816494848949}
   - component: {fileID: -6729794734929955617}
-  - component: {fileID: 8952086037516559659}
+  - component: {fileID: -7698107441690595794}
+  - component: {fileID: -5481498869456597163}
   m_Layer: 0
   m_Name: number_4
   m_TagString: SelectableObject
@@ -121,7 +122,7 @@ MeshCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1543247750563780}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 231b363a8a8084b4bb0053ec22445963, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -157,8 +158,28 @@ MonoBehaviour:
   startScale: {x: 0, y: 0, z: 0}
   yOffset: 0
   isTwitching: 0
+  isBeingRemoved: 0
   twitchingPosition: {x: 0, y: 0, z: 0}
---- !u!114 &8952086037516559659
+  removeList: 0
+  endScales:
+  - 0.7
+  - 0.6
+  - 0.5
+  - 0.4
+  endScaleID: 0
+--- !u!114 &-7698107441690595794
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1543247750563780}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4f30830e4c36a4439e97e4b2c5fe6ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-5481498869456597163
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

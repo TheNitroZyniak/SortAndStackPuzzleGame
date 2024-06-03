@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Level_18
   m_EditorClassIdentifier: 
   levelIndex: 18
-  secondsToComplete: 180
+  secondsToComplete: 360
   objects:
   - objectType: rose
     objectAmount: 6

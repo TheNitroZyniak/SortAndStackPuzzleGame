@@ -11,10 +11,11 @@ GameObject:
   - component: {fileID: 4782548153827030}
   - component: {fileID: 33751515674392320}
   - component: {fileID: 23367604239333896}
+  - component: {fileID: 8959362648792761233}
   - component: {fileID: -7078872529168725897}
-  - component: {fileID: -3823925806185358194}
   - component: {fileID: 1915191942687059942}
-  - component: {fileID: 1649798784508955214}
+  - component: {fileID: -8431347559692365420}
+  - component: {fileID: -8078576263225407831}
   m_Layer: 0
   m_Name: ball
   m_TagString: SelectableObject
@@ -87,6 +88,27 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!135 &8959362648792761233
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1294259509648660}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.49114448
+  m_Center: {x: -0.000000044703484, y: -0.000000074505806, z: 0}
 --- !u!54 &-7078872529168725897
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -114,28 +136,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!64 &-3823925806185358194
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1294259509648660}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300000, guid: 016eb03583a42ed4dbb23c1b2985e48d, type: 3}
 --- !u!114 &1915191942687059942
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -157,8 +157,28 @@ MonoBehaviour:
   startScale: {x: 0, y: 0, z: 0}
   yOffset: 0
   isTwitching: 0
+  isBeingRemoved: 0
   twitchingPosition: {x: 0, y: 0, z: 0}
---- !u!114 &1649798784508955214
+  removeList: 0
+  endScales:
+  - 1.3
+  - 1.2
+  - 1.1
+  - 1
+  endScaleID: 0
+--- !u!114 &-8431347559692365420
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1294259509648660}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4f30830e4c36a4439e97e4b2c5fe6ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-8078576263225407831
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

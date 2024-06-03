@@ -33,8 +33,10 @@ public class ObjectCell : MonoBehaviour{
         currentObject.currentCell = cellId;
 
         if (doMove) {
-            currentObject.transform.position = transform.position;
-            currentObject.twitchingPosition = transform.position;
+            if (!currentObject.isBeingRemoved) {
+                currentObject.transform.position = transform.position;
+                currentObject.twitchingPosition = transform.position;
+            }
         }
     }
     public bool IsEmpty() {

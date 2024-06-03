@@ -63,17 +63,17 @@ public class BoxesManager : MonoBehaviour {
 
         //MoveBoxesAsync();
 
-        //if (counter > 6) {
-        //    foreach (Box box in boxesList) {
-        //        if (box.transform.position.x >= xMaxPointToMove + 4.5f - 0.001f) {
-        //            Box objectWithMinX = boxesList.OrderBy(obj => obj.transform.position.x).First();
-        //            box.transform.position = new Vector3(objectWithMinX.transform.position.x - 4.5f, box.transform.position.y, box.transform.position.z);
-        //        } else if (box.transform.position.x < -xMaxPointToMove - 4.5f + 0.001f) {
-        //            Box objectWithMinX = boxesList.OrderBy(obj => obj.transform.position.x).Last();
-        //            box.transform.position = new Vector3(objectWithMinX.transform.position.x + 4.5f, box.transform.position.y, box.transform.position.z);
-        //        }
-        //    }
-        //}
+        if (counter > 6) {
+            foreach (Box box in boxesList) {
+                if (box.transform.position.x >= xMaxPointToMove + 4.5f - 0.001f) {
+                    Box objectWithMinX = boxesList.OrderBy(obj => obj.transform.position.x).First();
+                    box.transform.position = new Vector3(objectWithMinX.transform.position.x - 4.5f, box.transform.position.y, box.transform.position.z);
+                } else if (box.transform.position.x < -xMaxPointToMove - 4.5f + 0.001f) {
+                    Box objectWithMinX = boxesList.OrderBy(obj => obj.transform.position.x).Last();
+                    box.transform.position = new Vector3(objectWithMinX.transform.position.x + 4.5f, box.transform.position.y, box.transform.position.z);
+                }
+            }
+        }
     }
     public void SetStackParams(int amount) {
         ourStack = points[amount - 3].transform;
@@ -96,8 +96,8 @@ public class BoxesManager : MonoBehaviour {
             ourStack.transform.GetChild(counter).transform.position,
             Quaternion.Euler(180, 90, -90));
 
-        newBox.type = string.Empty;
-        //newBox.type = stackType;
+        //newBox.type = string.Empty;
+        newBox.type = stackType;
         //newBox.binText.text = stackType;
         newBox.transform.parent = transform;
 
@@ -115,6 +115,9 @@ public class BoxesManager : MonoBehaviour {
 
         amount = boxesList.Count / 2;
         if (boxesList.Count == 3) amount++;
+        if (amount > 5) amount = 5;
+
+        amount = boxesList.Count;
 
         foreach (Box box in boxesList) 
             box.gameObject.SetActive(false);
@@ -124,19 +127,21 @@ public class BoxesManager : MonoBehaviour {
             //amount = i;
         }
 
-        if (amount > 5) amount = 5;
+        
 
         float posX = 0;
 
-        switch (amount) {
-            case 2: posX = 2.25f; break;
-            case 3: posX = 6.75f; break;
-            case 4: posX = 9; break;
-            case 5: posX = 11.25f; break;
-            //case 6: posX = xPointToNotMove; break;
-        }
 
-        transform.position = new Vector3(posX, transform.position.y, transform.position.z);
+
+        //switch (amount) {
+        //    case 2: posX = 2.25f; break;
+        //    case 3: posX = 6.75f; break;
+        //    case 4: posX = 9; break;
+        //    case 5: posX = 11.25f; break;
+        //    //case 6: posX = xPointToNotMove; break;
+        //}
+
+        //transform.position = new Vector3(posX, transform.position.y, transform.position.z);
 
         currentLevel = PlayerPrefs.GetInt("CurrentLevel");
     }
@@ -345,7 +350,7 @@ public class BoxesManager : MonoBehaviour {
                 offX = -xPointToNotMove - boxToPlace.transform.position.x;
                 boxToPlace.endPosition = new Vector3(-xPointToNotMove, boxToPlace.transform.position.y, boxToPlace.transform.position.z);
             }
-
+            
 
             offX = transform.position.x + offX;
 
@@ -362,8 +367,8 @@ public class BoxesManager : MonoBehaviour {
 
                 }
             });
-        } else {
-            
+        } 
+        else {        
             if (currentLevel != 0) {
 
                 if (boxToPlace.transform.position.x > 0 && boxToPlace.transform.position.x < 3)
@@ -374,10 +379,9 @@ public class BoxesManager : MonoBehaviour {
                     boxToPlace.endPosition = new Vector3(6.75f, boxToPlace.transform.position.y, boxToPlace.transform.position.z);
                 else
                     boxToPlace.endPosition = new Vector3(-6.75f, boxToPlace.transform.position.y, boxToPlace.transform.position.z);
+
+                
             } 
-
-
-
 
             else {
                 if (boxToPlace.transform.position.x > 2)
@@ -386,6 +390,8 @@ public class BoxesManager : MonoBehaviour {
                     boxToPlace.endPosition = new Vector3(-4.5f, boxToPlace.transform.position.y, boxToPlace.transform.position.z);
                 else
                     boxToPlace.endPosition = new Vector3(0, boxToPlace.transform.position.y, boxToPlace.transform.position.z);
+
+                
             }
         }
 

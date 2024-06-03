@@ -14,7 +14,8 @@ GameObject:
   - component: {fileID: 7581446423705644071}
   - component: {fileID: -7824473542439263224}
   - component: {fileID: -3594471353000954817}
-  - component: {fileID: -5415417476551306403}
+  - component: {fileID: -2910667647477765256}
+  - component: {fileID: 4923978455367131709}
   m_Layer: 0
   m_Name: book
   m_TagString: SelectableObject
@@ -95,9 +96,9 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1058020403113052}
   serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
+  m_Mass: 10
+  m_Drag: 0.1
+  m_AngularDrag: 0.1
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -157,8 +158,28 @@ MonoBehaviour:
   startScale: {x: 0, y: 0, z: 0}
   yOffset: 0
   isTwitching: 0
+  isBeingRemoved: 0
   twitchingPosition: {x: 0, y: 0, z: 0}
---- !u!114 &-5415417476551306403
+  removeList: 0
+  endScales:
+  - 1.9
+  - 1.6
+  - 1.3
+  - 1
+  endScaleID: 0
+--- !u!114 &-2910667647477765256
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1058020403113052}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4f30830e4c36a4439e97e4b2c5fe6ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4923978455367131709
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

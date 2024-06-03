@@ -13,31 +13,31 @@ MonoBehaviour:
   m_Name: Random_1_Colors
   m_EditorClassIdentifier: 
   levelIndex: 21
-  secondsToComplete: 300
+  secondsToComplete: 360
   objects:
-  - objectType: bag
-    objectAmount: 12
-  - objectType: banana
+  - objectType: key
     objectAmount: 12
   - objectType: candy
     objectAmount: 12
-  - objectType: coin
+  - objectType: pencil
+    objectAmount: 12
+  - objectType: Text_J
+    objectAmount: 12
+  - objectType: banana
     objectAmount: 12
   - objectType: icecream
     objectAmount: 12
-  - objectType: ink
-    objectAmount: 12
-  - objectType: key
-    objectAmount: 12
-  - objectType: mike
-    objectAmount: 12
-  - objectType: number_2
-    objectAmount: 12
-  - objectType: pencil
+  - objectType: coin
     objectAmount: 12
   - objectType: star
     objectAmount: 12
+  - objectType: number_2
+    objectAmount: 12
+  - objectType: mike
+    objectAmount: 12
   - objectType: Text_B
     objectAmount: 12
-  - objectType: Text_J
+  - objectType: ink
+    objectAmount: 12
+  - objectType: bag
     objectAmount: 12

@@ -14,7 +14,8 @@ GameObject:
   - component: {fileID: -3154874842159706450}
   - component: {fileID: -5275891837886391428}
   - component: {fileID: -9099323016645545289}
-  - component: {fileID: 3017117810615691810}
+  - component: {fileID: -84331169500580137}
+  - component: {fileID: 3891147302448814184}
   m_Layer: 0
   m_Name: monkey
   m_TagString: SelectableObject
@@ -158,8 +159,28 @@ MonoBehaviour:
   startScale: {x: 0, y: 0, z: 0}
   yOffset: 0
   isTwitching: 0
+  isBeingRemoved: 0
   twitchingPosition: {x: 0, y: 0, z: 0}
---- !u!114 &3017117810615691810
+  removeList: 0
+  endScales:
+  - 1
+  - 1
+  - 1
+  - 1
+  endScaleID: 0
+--- !u!114 &-84331169500580137
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1426027343806916}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4f30830e4c36a4439e97e4b2c5fe6ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3891147302448814184
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

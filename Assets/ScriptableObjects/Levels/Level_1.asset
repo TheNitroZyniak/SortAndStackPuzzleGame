@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Level_1
   m_EditorClassIdentifier: 
   levelIndex: 1
-  secondsToComplete: 180
+  secondsToComplete: 120
   objects:
   - objectType: hamburger
     objectAmount: 6

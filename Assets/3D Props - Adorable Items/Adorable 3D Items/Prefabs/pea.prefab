@@ -14,7 +14,8 @@ GameObject:
   - component: {fileID: 3662983127472801513}
   - component: {fileID: -3410251330811418820}
   - component: {fileID: -4087109854293448105}
-  - component: {fileID: -1277378690406293090}
+  - component: {fileID: 4831754574384583845}
+  - component: {fileID: -101097382046393568}
   m_Layer: 0
   m_Name: pea
   m_TagString: SelectableObject
@@ -158,8 +159,28 @@ MonoBehaviour:
   startScale: {x: 0, y: 0, z: 0}
   yOffset: 0
   isTwitching: 0
+  isBeingRemoved: 0
   twitchingPosition: {x: 0, y: 0, z: 0}
---- !u!114 &-1277378690406293090
+  removeList: 0
+  endScales:
+  - 1
+  - 1
+  - 1
+  - 1
+  endScaleID: 0
+--- !u!114 &4831754574384583845
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1280151948498162}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4f30830e4c36a4439e97e4b2c5fe6ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-101097382046393568
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

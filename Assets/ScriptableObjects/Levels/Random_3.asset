@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Random_3
   m_EditorClassIdentifier: 
   levelIndex: 24
-  secondsToComplete: 300
+  secondsToComplete: 360
   objects:
   - objectType: giftbox
     objectAmount: 12

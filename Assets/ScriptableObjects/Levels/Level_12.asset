@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Level_12
   m_EditorClassIdentifier: 
   levelIndex: 12
-  secondsToComplete: 180
+  secondsToComplete: 240
   objects:
   - objectType: house
     objectAmount: 6
@@ -21,7 +21,7 @@ MonoBehaviour:
     objectAmount: 6
   - objectType: ghost
     objectAmount: 12
-  - objectType: helmet
+  - objectType: key
     objectAmount: 12
   - objectType: horse
     objectAmount: 12

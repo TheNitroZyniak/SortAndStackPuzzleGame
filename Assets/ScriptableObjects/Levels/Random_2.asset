@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Random_2
   m_EditorClassIdentifier: 
   levelIndex: 22
-  secondsToComplete: 300
+  secondsToComplete: 360
   objects:
   - objectType: bag
     objectAmount: 12

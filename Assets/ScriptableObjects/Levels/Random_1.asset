@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Random_1
   m_EditorClassIdentifier: 
   levelIndex: 20
-  secondsToComplete: 300
+  secondsToComplete: 360
   objects:
   - objectType: yam
     objectAmount: 12

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Random_2_Colors
   m_EditorClassIdentifier: 
   levelIndex: 23
-  secondsToComplete: 300
+  secondsToComplete: 360
   objects:
   - objectType: magnet
     objectAmount: 12

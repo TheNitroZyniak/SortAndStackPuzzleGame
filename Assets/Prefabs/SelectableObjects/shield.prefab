@@ -14,7 +14,8 @@ GameObject:
   - component: {fileID: 4597802178625346534}
   - component: {fileID: 4835212981946817905}
   - component: {fileID: -3523177886265795367}
-  - component: {fileID: 8161153802956037674}
+  - component: {fileID: 3823632063162796953}
+  - component: {fileID: 1299728689117016167}
   m_Layer: 0
   m_Name: shield
   m_TagString: SelectableObject
@@ -95,9 +96,9 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1276516466192448}
   serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
+  m_Mass: 10
+  m_Drag: 0.1
+  m_AngularDrag: 0.1
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -157,8 +158,28 @@ MonoBehaviour:
   startScale: {x: 0, y: 0, z: 0}
   yOffset: 0
   isTwitching: 0
+  isBeingRemoved: 0
   twitchingPosition: {x: 0, y: 0, z: 0}
---- !u!114 &8161153802956037674
+  removeList: 0
+  endScales:
+  - 2.5
+  - 2
+  - 1.5
+  - 1
+  endScaleID: 0
+--- !u!114 &3823632063162796953
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1276516466192448}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4f30830e4c36a4439e97e4b2c5fe6ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1299728689117016167
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

@@ -4,7 +4,7 @@ using UnityEngine;
 using System.Linq;
 using Zenject;
 using ModestTree;
-using static TMPro.Examples.TMP_ExampleScript_01;
+//using Firebase.Analytics;
 
 public class MainGameManager : MonoBehaviour {
     [Inject] UIManager _uiManager;
@@ -14,7 +14,7 @@ public class MainGameManager : MonoBehaviour {
     //[Inject] StackManager _stackManager;
     [Inject] BoxesManager _boxesManager;
 
-    private List<SelectableObject> allObjects = new List<SelectableObject>();
+    public List<SelectableObject> allObjects = new List<SelectableObject>();
     private bool touchBlocked, touchBoxBlocked;
 
     public List<SelectableObject> moveHistory = new List<SelectableObject>();
@@ -22,6 +22,28 @@ public class MainGameManager : MonoBehaviour {
     int amountOfUndo = 3;
 
     int currentLevel;
+
+    [SerializeField] Transform[] cameras;
+
+    private void Start() {
+        float screenWidth = Screen.width;
+        float screenHeight = Screen.height;
+
+        float mainRatio = 1920f / 1080f;
+        float newRatio = (float) Screen.height / (float) Screen.width;
+
+        float oneRatio = 240f / 1080f;
+
+        float difference = newRatio - mainRatio;
+        float camOffset = (float)difference / (float)oneRatio;
+        
+        for(int i = 0; i < cameras.Length; i++) {
+            cameras[i].transform.position = new Vector3(cameras[i].transform.position.x, 
+                cameras[i].transform.position.y + camOffset, 
+                cameras[i].transform.position.z);
+        }
+
+    }
 
     private bool CheckAllObjects() {
         if(allObjects.Count > 0) return true;
@@ -37,9 +59,9 @@ public class MainGameManager : MonoBehaviour {
 
             allObjects.Remove(objectToRemove);
             if (!CheckAllObjects()) {
-                //_uiManager.OpenVictoryPopup();
+                _uiManager.OpenVictoryPopup();
                 //StartCoroutine(_boxesManager.MoveFromStacksToCentre());
-                //_timer.StopTimer();
+                _timer.StopTimer();
             }
         }
     }
@@ -79,6 +101,16 @@ public class MainGameManager : MonoBehaviour {
 
 
     public void GameLost() {
+
+        //LevelFailed level = new LevelFailed();
+        //level.level = currentLevel;
+        //string json = JsonUtility.ToJson(level);
+        //AppMetrica.Instance.ReportEvent("Level_Failed", json);
+
+        //FirebaseAnalytics.LogEvent("Level_Failed", new Parameter("Level", currentLevel));
+
+        _timer.StopTimer();
+
         _uiManager.OpenLosePopup();
     }
 
@@ -95,9 +127,9 @@ public class MainGameManager : MonoBehaviour {
     }
 
 
-    public void UnblockTouch(SelectableObject thisObject) {
+    public void UnblockTouch() {
 
-        _cells.Check3After(thisObject);
+        //_cells.Check3After(thisObject);
 
         touchBlocked = false;
     }
@@ -111,10 +143,16 @@ public class MainGameManager : MonoBehaviour {
         touchBoxBlocked = false;
     }
 
+    bool magnetBlocked;
 
     public void UseMagnet() {
+
+        if (_cells.GetCurrentCellId() > 3 || magnetBlocked) return;
+
         int r = allObjects[Random.Range(0, allObjects.Count)].id;
         int c = 0;
+        magnetBlocked = true;
+
         List<SelectableObject> takenObjects = new List<SelectableObject>();
         for(int i = 0; i < allObjects.Count; i++) {
             if(allObjects[i].id == r) {
@@ -129,11 +167,14 @@ public class MainGameManager : MonoBehaviour {
     }
 
     IEnumerator SelectAll(List<SelectableObject> takenObjects) {
+        BlockTouch();
         foreach (SelectableObject obj in takenObjects) {
             obj.Select(true);
             yield return new WaitForSeconds(0.25f);
 
         }
+        UnblockTouch();
+        magnetBlocked = false;
     }
 
     public void OnUndoButtonPress() => UndoLastMove();
@@ -151,7 +192,7 @@ public class MainGameManager : MonoBehaviour {
         if (moveHistory.Count > 0 & amountOfUndo > 0) {
 
             SelectableObject objectToPlace = moveHistory[moveHistory.Count - 1];
-
+            _cells.UpdateAfterUndo(objectToPlace.objectType);
             _cells.ChangeCells(objectToPlace.currentCell);
             objectToPlace.ToCentre();
             allObjects.Add(objectToPlace);

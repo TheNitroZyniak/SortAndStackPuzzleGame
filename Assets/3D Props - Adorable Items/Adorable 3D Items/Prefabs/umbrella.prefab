@@ -14,7 +14,8 @@ GameObject:
   - component: {fileID: -6464320760895891061}
   - component: {fileID: -2442832252931293847}
   - component: {fileID: -3023208257737938579}
-  - component: {fileID: 5678027405908880368}
+  - component: {fileID: 5448339872648654125}
+  - component: {fileID: -1340701399155688364}
   m_Layer: 0
   m_Name: umbrella
   m_TagString: SelectableObject
@@ -157,8 +158,28 @@ MonoBehaviour:
   startScale: {x: 0, y: 0, z: 0}
   yOffset: 0
   isTwitching: 0
+  isBeingRemoved: 0
   twitchingPosition: {x: 0, y: 0, z: 0}
---- !u!114 &5678027405908880368
+  removeList: 0
+  endScales:
+  - 1.3
+  - 1.2
+  - 1.1
+  - 1
+  endScaleID: 0
+--- !u!114 &5448339872648654125
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1820424818895074}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4f30830e4c36a4439e97e4b2c5fe6ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-1340701399155688364
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

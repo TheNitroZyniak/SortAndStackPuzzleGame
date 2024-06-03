@@ -156,6 +156,11 @@ namespace AutoLetterbox
         public Camera letterBoxCamera;
 
         private void Start () {
+
+            if((float)Screen.height / (float)Screen.width < 1.7776f) {
+                letterBoxCameraColor = Color.black;
+            }
+
             // If no cameras have been assigned in editor, search for cameras in the scene
             if (findCamerasAutomatically) {
                 FindAllCamerasInScene();

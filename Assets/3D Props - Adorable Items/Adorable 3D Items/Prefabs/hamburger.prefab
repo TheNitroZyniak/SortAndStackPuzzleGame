@@ -14,7 +14,8 @@ GameObject:
   - component: {fileID: -2837467831242585592}
   - component: {fileID: -6240871921460337930}
   - component: {fileID: -7004099881715733914}
-  - component: {fileID: 1167786639915378932}
+  - component: {fileID: -7535214441943462091}
+  - component: {fileID: -8840991082483051195}
   m_Layer: 0
   m_Name: hamburger
   m_TagString: SelectableObject
@@ -157,8 +158,28 @@ MonoBehaviour:
   startScale: {x: 0, y: 0, z: 0}
   yOffset: 0
   isTwitching: 0
+  isBeingRemoved: 0
   twitchingPosition: {x: 0, y: 0, z: 0}
---- !u!114 &1167786639915378932
+  removeList: 0
+  endScales:
+  - 1.3
+  - 1.2
+  - 1.1
+  - 1
+  endScaleID: 0
+--- !u!114 &-7535214441943462091
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1920111936519340}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4f30830e4c36a4439e97e4b2c5fe6ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-8840991082483051195
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

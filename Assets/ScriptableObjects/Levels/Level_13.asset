@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Level_13
   m_EditorClassIdentifier: 
   levelIndex: 13
-  secondsToComplete: 180
+  secondsToComplete: 300
   objects:
   - objectType: ship
     objectAmount: 6

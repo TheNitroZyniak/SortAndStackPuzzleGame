@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Level_16
   m_EditorClassIdentifier: 
   levelIndex: 16
-  secondsToComplete: 180
+  secondsToComplete: 300
   objects:
   - objectType: table
     objectAmount: 6

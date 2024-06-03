@@ -13,25 +13,25 @@ public class VictoryPopup : MonoBehaviour{
 
     private void OnEnable() {
         transform.localScale = Vector3.zero;
-
-        time.text = _timer.GetTime().ToString() + " s";
-
-        float ratio = (float)_timer.GetTime() / (float)_timer.levelTime;
-
         transform.DOScale(Vector3.one, 0.8f);
 
-        if (ratio > 0.5f) {
-            StartCoroutine(OpenStars(1f, 0));
-            StartCoroutine(OpenStars(1.5f, 1));
-            StartCoroutine(OpenStars(2f, 2));
-        }
-        else if (ratio > 0.25f) {
-            StartCoroutine(OpenStars(1f, 0));
-            StartCoroutine(OpenStars(1.5f, 1));
-        }
-        else
-            StartCoroutine(OpenStars(1f, 0));
+        if (stars.Length > 0) {
 
+            time.text = _timer.GetTime().ToString() + " s";
+
+            float ratio = (float)_timer.GetTime() / (float)_timer.levelTime;
+
+            if (ratio > 0.5f) {
+                StartCoroutine(OpenStars(1f, 0));
+                StartCoroutine(OpenStars(1.5f, 1));
+                StartCoroutine(OpenStars(2f, 2));
+            } else if (ratio > 0.25f) {
+                StartCoroutine(OpenStars(1f, 0));
+                StartCoroutine(OpenStars(1.5f, 1));
+            } else
+                StartCoroutine(OpenStars(1f, 0));
+
+        } 
     }
 
     private IEnumerator OpenStars(float sec, int starId) {

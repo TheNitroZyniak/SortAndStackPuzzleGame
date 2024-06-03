@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Level_17
   m_EditorClassIdentifier: 
   levelIndex: 17
-  secondsToComplete: 180
+  secondsToComplete: 300
   objects:
   - objectType: bicycle
     objectAmount: 6
